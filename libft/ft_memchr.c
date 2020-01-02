@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsuonper <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: vtouffet <vtouffet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/02 13:48:52 by jsuonper          #+#    #+#             */
-/*   Updated: 2020/01/02 17:03:43 by jsuonper         ###   ########.fr       */
+/*   Created: 2017/08/18 20:58:49 by vtouffet          #+#    #+#             */
+/*   Updated: 2017/11/10 11:51:57 by vtouffet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
+#include "libft.h"
 
-# define FDF_H
-# include "../miniLibX/mlx.h"
-# include "../libft/libft.h"
-
-typedef struct		s_mlx_struct
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	void			*mlx_ptr;
-	void			*win_ptr;
-}					t_mlx_struct;
+	size_t			i;
+	unsigned char	*ptr;
 
-t_mlx_struct		*create_mlx_struct(void *mlx_ptr, void *win_ptr);
-
-#endif
+	i = 0;
+	ptr = (unsigned char*)s;
+	while (++i <= n)
+		if (*(ptr++) == (unsigned char)c)
+			return ((void*)--ptr);
+	return (0);
+}

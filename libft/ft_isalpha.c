@@ -1,27 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsuonper <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: vtouffet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/02 13:48:52 by jsuonper          #+#    #+#             */
-/*   Updated: 2020/01/02 17:03:43 by jsuonper         ###   ########.fr       */
+/*   Created: 2017/11/06 13:41:14 by vtouffet          #+#    #+#             */
+/*   Updated: 2017/11/09 10:47:43 by vtouffet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
+#include "libft.h"
 
-# define FDF_H
-# include "../miniLibX/mlx.h"
-# include "../libft/libft.h"
-
-typedef struct		s_mlx_struct
+int	ft_isalpha(int c)
 {
-	void			*mlx_ptr;
-	void			*win_ptr;
-}					t_mlx_struct;
-
-t_mlx_struct		*create_mlx_struct(void *mlx_ptr, void *win_ptr);
-
-#endif
+	return (ft_islower(c) || ft_isupper(c));
+}

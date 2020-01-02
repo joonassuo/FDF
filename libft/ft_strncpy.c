@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   ft_strncpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsuonper <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: vtouffet <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/02 13:48:52 by jsuonper          #+#    #+#             */
-/*   Updated: 2020/01/02 17:03:43 by jsuonper         ###   ########.fr       */
+/*   Created: 2017/07/06 13:51:01 by vtouffet          #+#    #+#             */
+/*   Updated: 2017/11/10 13:03:53 by vtouffet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
+#include "libft.h"
 
-# define FDF_H
-# include "../miniLibX/mlx.h"
-# include "../libft/libft.h"
-
-typedef struct		s_mlx_struct
+char	*ft_strncpy(char *dest, const char *src, size_t n)
 {
-	void			*mlx_ptr;
-	void			*win_ptr;
-}					t_mlx_struct;
+	size_t	i;
 
-t_mlx_struct		*create_mlx_struct(void *mlx_ptr, void *win_ptr);
-
-#endif
+	i = 0;
+	while (src[i] != '\0' && i < n)
+	{
+		dest[i] = src[i];
+		++i;
+	}
+	while (i < n)
+	{
+		dest[i] = '\0';
+		i++;
+	}
+	return (dest);
+}

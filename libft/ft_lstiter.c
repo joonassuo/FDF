@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsuonper <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: vtouffet <vtouffet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/02 13:48:52 by jsuonper          #+#    #+#             */
-/*   Updated: 2020/01/02 17:03:43 by jsuonper         ###   ########.fr       */
+/*   Created: 2017/08/21 15:52:49 by vtouffet          #+#    #+#             */
+/*   Updated: 2017/11/09 10:48:54 by vtouffet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
+#include "libft.h"
 
-# define FDF_H
-# include "../miniLibX/mlx.h"
-# include "../libft/libft.h"
-
-typedef struct		s_mlx_struct
+void	ft_lstiter(t_list *lst, void (*f)(t_list *elem))
 {
-	void			*mlx_ptr;
-	void			*win_ptr;
-}					t_mlx_struct;
+	t_list	*ptr;
 
-t_mlx_struct		*create_mlx_struct(void *mlx_ptr, void *win_ptr);
-
-#endif
+	ptr = lst;
+	while (ptr)
+	{
+		f(ptr);
+		ptr = ptr->next;
+	}
+}

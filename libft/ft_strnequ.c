@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   ft_strnequ.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jsuonper <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: vtouffet <vtouffet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/02 13:48:52 by jsuonper          #+#    #+#             */
-/*   Updated: 2020/01/02 17:03:43 by jsuonper         ###   ########.fr       */
+/*   Created: 2017/08/19 14:02:51 by vtouffet          #+#    #+#             */
+/*   Updated: 2017/12/12 11:07:14 by vtouffet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
+#include "libft.h"
+#include "libft.h"
 
-# define FDF_H
-# include "../miniLibX/mlx.h"
-# include "../libft/libft.h"
-
-typedef struct		s_mlx_struct
+int	ft_strnequ(char const *s1, char const *s2, size_t n)
 {
-	void			*mlx_ptr;
-	void			*win_ptr;
-}					t_mlx_struct;
-
-t_mlx_struct		*create_mlx_struct(void *mlx_ptr, void *win_ptr);
-
-#endif
+	if (!s1 || !s2)
+		return (0);
+	if (ft_strncmp(s1, s2, n) == 0)
+		return (1);
+	return (0);
+}
