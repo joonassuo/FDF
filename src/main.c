@@ -6,7 +6,7 @@
 /*   By: jsuonper <jsuonper@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/02 13:19:25 by jsuonper          #+#    #+#             */
-/*   Updated: 2020/01/07 11:38:13 by jsuonper         ###   ########.fr       */
+/*   Updated: 2020/01/07 13:17:53 by jsuonper         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,18 @@
 
 int					mouse_draw_line(int button, int x, int y, t_mlx_struct *param)
 {
-	draw_line(0, 0, x, y, param);
+	if (!*(int*)param->payload)
+	{
+		*(int*)param->payload = 1;
+		param->coords->x0 = x;
+		param->coords->y0 = y;
+		return (0);
+	}
+	else
+	{
+		*(int*)param->payload = 0;
+		draw_line(param->coords->x0, param->coords->y0, x, y, param);
+	}
 	return (button);
 }
 
