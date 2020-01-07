@@ -3,27 +3,31 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jsuonper <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: jsuonper <jsuonper@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/02 14:48:04 by jsuonper          #+#    #+#              #
-#    Updated: 2020/01/02 17:03:28 by jsuonper         ###   ########.fr        #
+#    Updated: 2020/01/07 11:28:35 by jsuonper         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fdf
 
+#SOURCES
 SRCS_DIR = src/
-SRCS_LIST = main.c create_mlx_struct.c
+SRCS_LIST = main.c\
+			create_mlx_struct.c\
+			create_coords.c\
+			bresenham.c
 SRCS = $(addprefix $(SRCS_DIR), $(SRCS_LIST))
 
+#INCLUDES
 INCLUDES_DIR = includes/
 INCLUDES_LIST = fdf.h
 INCLUDES = $(addprefix $(INCLUDES_DIR), $(INCLUDES_LIST))
-
 LIBFT = libft/libft.a
 
+#COMPILATION
 OBJ = $(SRCS:.c=.o)
-
 CC = gcc
 CFLAGS = -Werror -Wall -Wextra
 
