@@ -6,7 +6,7 @@
 #    By: jsuonper <jsuonper@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/02 14:48:04 by jsuonper          #+#    #+#              #
-#    Updated: 2020/01/07 11:28:35 by jsuonper         ###   ########.fr        #
+#    Updated: 2020/01/16 11:46:22 by jsuonper         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,9 @@ SRCS_DIR = src/
 SRCS_LIST = main.c\
 			create_mlx_struct.c\
 			create_coords.c\
-			bresenham.c
+			bresenham.c\
+			make_square.c\
+			make_cube.c
 SRCS = $(addprefix $(SRCS_DIR), $(SRCS_LIST))
 
 #INCLUDES
