@@ -6,7 +6,7 @@
 /*   By: jsuonper <jsuonper@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/02 13:48:52 by jsuonper          #+#    #+#             */
-/*   Updated: 2020/01/16 12:33:15 by jsuonper         ###   ########.fr       */
+/*   Updated: 2020/01/16 13:38:55 by jsuonper         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,11 @@ t_mlx_struct		*create_mlx_struct(void *mlx_ptr, void *win_ptr, t_coords *coords,
 void        		draw_cube(t_cube_coords *cube_coords, t_mlx_struct *mlx);
 void				draw_line(int x0, int y0, int x1, int y1, t_mlx_struct *param);
 void            	make_square(t_mlx_struct *param);
+void		        rotate_cube_z(t_cube_coords *cube_coords, double angle);
+void		        rotate_cube_x(t_cube_coords *cube_coords, double angle);
+void		        rotate_cube_y(t_cube_coords *cube_coords, double angle);
+void		        rotate_x(t_3d_coords *coords, double angle);
+void		        rotate_y(t_3d_coords *coords, double angle);
+void		        rotate_z(t_3d_coords *coords, double angle);
 
 #endif

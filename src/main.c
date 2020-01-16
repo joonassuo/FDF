@@ -6,11 +6,12 @@
 /*   By: jsuonper <jsuonper@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/02 13:19:25 by jsuonper          #+#    #+#             */
-/*   Updated: 2020/01/16 12:20:38 by jsuonper         ###   ########.fr       */
+/*   Updated: 2020/01/16 14:02:31 by jsuonper         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
+#include <stdio.h>
 
 int					mouse_draw_line(int button, int x, int y, t_mlx_struct *param)
 {
@@ -29,17 +30,35 @@ int					mouse_draw_line(int button, int x, int y, t_mlx_struct *param)
 	return (button);
 }
 
+int				rotate_on_key(int keycode, t_mlx_struct *test) {
+	double		angle;
+
+	angle = 0.05;
+	if (keycode == 126)
+	{
+		rotate_cube_x(test->payload, angle);
+		rotate_cube_y(test->payload, angle);
+		mlx_clear_window(test->mlx_ptr, test->win_ptr);
+		draw_cube(test->payload, test->mlx_ptr);
+	}
+	
+	return (keycode);
+}
+
 int					main(void)
 {
 	void			*mlx_ptr;
 	void			*win_ptr;
 	t_coords		*coords_ptr;
-	t_3d_coords		*cube_origin;
+	t_3d_coords		*cube_center;
 	t_cube_coords	*cube_coords;
 	t_mlx_struct	*struct_ptr;
+	t_mlx_struct	*test;
 	int				mouse_clicked;
+	double			angle;
 
 	mouse_clicked = 0;
+	angle = 0.05;
 
 	// initialize mlx window
 	mlx_ptr = mlx_init();
@@ -50,10 +69,14 @@ int					main(void)
 	struct_ptr = create_mlx_struct(mlx_ptr, win_ptr, coords_ptr, &mouse_clicked);
 	mlx_mouse_hook(win_ptr, mouse_draw_line, struct_ptr);
 
-	// draw cube test
-	cube_origin = create_3d_coords(100, 100, 0);
-	cube_coords = create_cube_coords(cube_origin);
+	// draw cube
+	cube_center = create_3d_coords(250, 250, 250);
+	cube_coords = create_cube_coords(cube_center);
 	draw_cube(cube_coords, mlx_ptr);
+
+	// rotate on keypress
+	test = create_mlx_struct(mlx_ptr, win_ptr, 0, cube_coords);
+	mlx_key_hook(win_ptr, rotate_on_key, test);
 	
 	mlx_loop(mlx_ptr);
 	return (0);

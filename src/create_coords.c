@@ -6,26 +6,28 @@
 /*   By: jsuonper <jsuonper@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 11:24:47 by jsuonper          #+#    #+#             */
-/*   Updated: 2020/01/16 12:32:54 by jsuonper         ###   ########.fr       */
+/*   Updated: 2020/01/16 13:36:48 by jsuonper         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 #include <stdlib.h>
 
-t_cube_coords       *create_cube_coords(t_3d_coords *top_left)
+t_cube_coords       *create_cube_coords(t_3d_coords *cube_center)
 {
     t_cube_coords   *ret;
+    int             d;
     if (!(ret = (t_cube_coords*)malloc(sizeof(t_cube_coords))))
         return (0);
-    ret->c1 = create_3d_coords(top_left->x, top_left->y, top_left->z);
-    ret->c2 = create_3d_coords(top_left->x + GRID_SZ, top_left->y, top_left->z);
-    ret->c3 = create_3d_coords(top_left->x + GRID_SZ, top_left->y + GRID_SZ, top_left->z);
-    ret->c4 = create_3d_coords(top_left->x, top_left->y + GRID_SZ, top_left->z);
-    ret->c5 = create_3d_coords(top_left->x, top_left->y, top_left->z + GRID_SZ);
-    ret->c6 = create_3d_coords(top_left->x + GRID_SZ, top_left->y, top_left->z + GRID_SZ);
-    ret->c7 = create_3d_coords(top_left->x + GRID_SZ, top_left->y + GRID_SZ, top_left->z + GRID_SZ);
-    ret->c8 = create_3d_coords(top_left->x, top_left->y + GRID_SZ, top_left->z + GRID_SZ);
+    d = GRID_SZ / 2;
+    ret->c1 = create_3d_coords(cube_center->x - d, cube_center->y - d, cube_center->z - d);
+    ret->c2 = create_3d_coords(cube_center->x + d, cube_center->y - d, cube_center->z - d);
+    ret->c3 = create_3d_coords(cube_center->x + d, cube_center->y + d, cube_center->z - d);
+    ret->c4 = create_3d_coords(cube_center->x - d, cube_center->y + d, cube_center->z - d);
+    ret->c5 = create_3d_coords(cube_center->x - d, cube_center->y - d, cube_center->z + d);
+    ret->c6 = create_3d_coords(cube_center->x + d, cube_center->y - d, cube_center->z + d);
+    ret->c7 = create_3d_coords(cube_center->x + d, cube_center->y + d, cube_center->z + d);
+    ret->c8 = create_3d_coords(cube_center->x - d, cube_center->y + d, cube_center->z + d);
     return (ret);
 }
 
