@@ -6,7 +6,7 @@
 /*   By: jsuonper <jsuonper@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/02 13:19:25 by jsuonper          #+#    #+#             */
-/*   Updated: 2020/01/20 14:17:10 by jsuonper         ###   ########.fr       */
+/*   Updated: 2020/01/20 16:30:43 by jsuonper         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,8 +117,16 @@ int					main(int ac, char **av)
 	//mlx_loop(mlx_ptr);
 
 
+	// MAKE GRID:
+
+	int				*size;
+
 	fd = open(av[1], O_RDONLY);
-	make_3d_array(fd);
+	size = count_size(fd);
+	printf("rows: %d\ncolumns: %d\n", size[0], size[1]);
+	close(fd);
+	fd = open(av[1], O_RDONLY);
+	make_3d_array(fd, size);
 
 	return (ac);
 }

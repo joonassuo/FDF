@@ -6,7 +6,7 @@
 /*   By: jsuonper <jsuonper@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/02 13:48:52 by jsuonper          #+#    #+#             */
-/*   Updated: 2020/01/20 14:15:55 by jsuonper         ###   ########.fr       */
+/*   Updated: 2020/01/20 16:35:27 by jsuonper         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,14 @@ typedef struct		s_mlx_struct
 	void			*payload;
 }					t_mlx_struct;
 
+int                 *count_size(int fd);
 t_3d_coords			*create_3d_coords(int x, int y, int z);
 t_coords			*create_coords(int x0, int y0, int x1, int y1);
 t_cube_coords       *create_cube_coords(t_3d_coords *top_left);
 t_mlx_struct		*create_mlx_struct(void *mlx_ptr, void *win_ptr, t_coords *coords, void *payload);
 void        		draw_cube(t_cube_coords *cube_coords, t_mlx_struct *mlx);
 void				draw_line(int x0, int y0, int x1, int y1, t_mlx_struct *param);
-void				make_3d_array(int fd);
+void				make_3d_array(int fd, int *size);
 void            	make_square(t_mlx_struct *param);
 void		        rotate_cube_z(t_cube_coords *cube_coords, double angle);
 void		        rotate_cube_x(t_cube_coords *cube_coords, double angle);
