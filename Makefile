@@ -6,7 +6,7 @@
 #    By: jsuonper <jsuonper@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/02 14:48:04 by jsuonper          #+#    #+#              #
-#    Updated: 2020/01/20 14:14:43 by jsuonper         ###   ########.fr        #
+#    Updated: 2020/01/20 18:18:43 by jsuonper         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,6 @@ SRCS_LIST = main.c\
 			create_mlx_struct.c\
 			create_coords.c\
 			bresenham.c\
-			make_square.c\
 			make_cube.c\
 			rotate.c\
 			make_grid.c

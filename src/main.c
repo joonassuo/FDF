@@ -6,7 +6,7 @@
 /*   By: jsuonper <jsuonper@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/02 13:19:25 by jsuonper          #+#    #+#             */
-/*   Updated: 2020/01/20 16:30:43 by jsuonper         ###   ########.fr       */
+/*   Updated: 2020/01/20 18:31:11 by jsuonper         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,16 +85,18 @@ int					main(int ac, char **av)
 	void			*mlx_ptr;
 	void			*win_ptr;
 	t_coords		*coords_ptr;
-	t_3d_coords		*cube_center;
-	t_cube_coords	*cube_coords;
+//	t_3d_coords		*cube_center;
+//	t_cube_coords	*cube_coords;
 	t_mlx_struct	*struct_ptr;
-	t_mlx_struct	*cube_ptr;
+//	t_mlx_struct	*cube_ptr;
 	int				mouse_clicked;
 	int				fd;
-	double			angle;
+	int				i;
+	int				j;
+//	double			angle;
 
 	mouse_clicked = 0;
-	angle = 0.05;
+//	angle = 0.05;
 
 	// initialize mlx window
 	mlx_ptr = mlx_init();
@@ -105,6 +107,7 @@ int					main(int ac, char **av)
 	struct_ptr = create_mlx_struct(mlx_ptr, win_ptr, coords_ptr, &mouse_clicked);
 	mlx_mouse_hook(win_ptr, mouse_draw_line, struct_ptr);
 
+/* 
 	// draw cube
 	cube_center = create_3d_coords(250, 250, 0);
 	cube_coords = create_cube_coords(cube_center);
@@ -114,19 +117,39 @@ int					main(int ac, char **av)
 	cube_ptr = create_mlx_struct(mlx_ptr, win_ptr, 0, cube_coords);
 	mlx_key_hook(win_ptr, rotate_on_key, cube_ptr);
 	
-	//mlx_loop(mlx_ptr);
+	mlx_loop(mlx_ptr);
+
+ */
+
+
+
 
 
 	// MAKE GRID:
 
-	int				*size;
+ 	int				*size;
+	int				***coords_arr;
 
 	fd = open(av[1], O_RDONLY);
 	size = count_size(fd);
-	printf("rows: %d\ncolumns: %d\n", size[0], size[1]);
 	close(fd);
 	fd = open(av[1], O_RDONLY);
-	make_3d_array(fd, size);
+	coords_arr = make_3d_array(fd, size);
+	
+	i = 0;
+    while (coords_arr[i])
+    {
+        j = 0;
+        while (coords_arr[i][j])
+        {
+            printf("x: %d y: %d z: %d\n", coords_arr[i][j][0], coords_arr[i][j][1], coords_arr[i][j][2]);
+            j++;
+        }
+        i++;
+    }
+
+	draw_grid(mlx_ptr, coords_arr);
+	mlx_loop(mlx_ptr);
 
 	return (ac);
 }
