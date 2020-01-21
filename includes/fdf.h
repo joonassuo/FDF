@@ -6,7 +6,7 @@
 /*   By: jsuonper <jsuonper@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/02 13:48:52 by jsuonper          #+#    #+#             */
-/*   Updated: 2020/01/20 18:35:54 by jsuonper         ###   ########.fr       */
+/*   Updated: 2020/01/21 13:00:52 by jsuonper         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ void            	make_square(t_mlx_struct *param);
 void		        rotate_cube_z(t_cube_coords *cube_coords, double angle);
 void		        rotate_cube_x(t_cube_coords *cube_coords, double angle);
 void		        rotate_cube_y(t_cube_coords *cube_coords, double angle);
+void        		rot_grid(int ***coords_arr, double angle, char axel);
 void		        rotate_x(t_3d_coords *coords, double angle);
 void		        rotate_y(t_3d_coords *coords, double angle);
 void		        rotate_z(t_3d_coords *coords, double angle);
