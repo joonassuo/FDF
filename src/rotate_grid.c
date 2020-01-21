@@ -6,7 +6,7 @@
 /*   By: jsuonper <jsuonper@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 12:32:38 by jsuonper          #+#    #+#             */
-/*   Updated: 2020/01/21 13:06:52 by jsuonper         ###   ########.fr       */
+/*   Updated: 2020/01/21 14:56:38 by jsuonper         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void        rot_grid(int ***coords_arr, double angle, char axel)
     while (coords_arr[i])
     {
         j = 0;
-        while (j < 4)
+        while (coords_arr[i][j])
         {
             rot_coords(coords_arr[i][j], angle, axel);
             j++;

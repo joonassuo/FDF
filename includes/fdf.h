@@ -6,7 +6,7 @@
 /*   By: jsuonper <jsuonper@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/02 13:48:52 by jsuonper          #+#    #+#             */
-/*   Updated: 2020/01/21 13:00:52 by jsuonper         ###   ########.fr       */
+/*   Updated: 2020/01/21 14:54:46 by jsuonper         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 # define FDF_H
 # define GRID_SZ 50
+# define WIN_H 2000
+# define WIN_W 2000
 # include "../miniLibX/mlx.h"
 # include "../libft/libft.h"
 # include "../libft/get_next_line.h"
@@ -63,6 +65,8 @@ void        		draw_cube(t_cube_coords *cube_coords, t_mlx_struct *mlx);
 void            	draw_grid(t_mlx_struct *mlx_ptr, int ***coords_arr);
 void				draw_line(int x0, int y0, int x1, int y1, t_mlx_struct *param);
 void            	make_square(t_mlx_struct *param);
+int					rot_g_onkey(int keycode, t_mlx_struct *coords_ptr);
+void	            draw_grid(t_mlx_struct *mlx_ptr, int ***coords_arr);
 void		        rotate_cube_z(t_cube_coords *cube_coords, double angle);
 void		        rotate_cube_x(t_cube_coords *cube_coords, double angle);
 void		        rotate_cube_y(t_cube_coords *cube_coords, double angle);
