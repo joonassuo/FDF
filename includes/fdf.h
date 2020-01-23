@@ -6,7 +6,7 @@
 /*   By: jsuonper <jsuonper@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/02 13:48:52 by jsuonper          #+#    #+#             */
-/*   Updated: 2020/01/23 12:02:07 by jsuonper         ###   ########.fr       */
+/*   Updated: 2020/01/23 12:22:35 by jsuonper         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@ typedef struct		s_mlx_struct
 	void			*payload;
 }					t_mlx_struct;
 
-int                 *count_size(int fd);
-double				***make_3d_array(int fd, int *size);
+double              *count_size(int fd);
+double				***make_3d_array(int fd, double *size);
 t_3d_coords			*create_3d_coords(int x, int y, int z);
 t_coords			*create_coords(int x0, int y0, int x1, int y1);
 t_cube_coords       *create_cube_coords(t_3d_coords *top_left);

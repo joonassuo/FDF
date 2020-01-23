@@ -6,23 +6,23 @@
 /*   By: jsuonper <jsuonper@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 13:43:36 by jsuonper          #+#    #+#             */
-/*   Updated: 2020/01/23 11:59:32 by jsuonper         ###   ########.fr       */
+/*   Updated: 2020/01/23 12:34:53 by jsuonper         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 #include <stdio.h>
 
-int                 *count_size(int fd)
+double              *count_size(int fd)
 {
     char            *line;
     char            **array;
-    int             *res;
+    double          *res;
     int             rows;
     int             columns;
-    int             ret;
+    double          ret;
 
-    res = (int*)malloc(sizeof(int) * 2);
+    res = (double*)malloc(sizeof(double) * 2);
     rows = 0;
     while ((ret = get_next_line(fd, &line)))
     {
@@ -34,10 +34,10 @@ int                 *count_size(int fd)
     }
     res[0] = rows;
     res[1] = columns;
-    return ((int*)res);
+    return ((double*)res);
 }
 
-double              ***make_3d_array(int fd, int *size)
+double              ***make_3d_array(int fd, double *size)
 {
     char            *line;
     char            **num_array;
@@ -45,7 +45,6 @@ double              ***make_3d_array(int fd, int *size)
     int             i;
     int             j;
     int             ret;
-
 
     coords_array = (double***)malloc(sizeof(double**) * size[0] + 1);
     i = 0;
@@ -58,8 +57,8 @@ double              ***make_3d_array(int fd, int *size)
         while (j < size[1])
         {
             coords_array[i][j] = (double*)malloc(sizeof(double) * 3 + 1);
-            coords_array[i][j][0] = (WIN_W / 2) - (size[0] / 2) + (j * GRID_SZ);
-            coords_array[i][j][1] = (WIN_H / 2) - (size[1] / 2) + (i * GRID_SZ);
+            coords_array[i][j][0] = 0 - ((size[0] - 1) * GRID_SZ / 2) + (j * GRID_SZ);
+            coords_array[i][j][1] = 0 - ((size[1] - 1) * GRID_SZ / 2) + (i * GRID_SZ);
             coords_array[i][j][2] = ft_atoi(num_array[j]) * GRID_SZ;
             coords_array[i][j][3] = '\0';
             j++;
@@ -80,32 +79,37 @@ double              ***make_3d_array(int fd, int *size)
 
 void            draw_square(t_mlx_struct *mlx_ptr, double ***coords_arr, int x, int y)
 {
+    double      padding_w;
+    double      padding_h;
+
+    padding_h = WIN_H / 2;
+    padding_w = WIN_W / 2;
     draw_line(
-        coords_arr[y][x][0],
-        coords_arr[y][x][1],
-        coords_arr[y][x + 1][0],
-        coords_arr[y][x + 1][1],
+        coords_arr[y][x][0] + padding_w,
+        coords_arr[y][x][1] + padding_h,
+        coords_arr[y][x + 1][0] + padding_w,
+        coords_arr[y][x + 1][1] + padding_h,
         mlx_ptr
     );
     draw_line(
-        coords_arr[y][x][0],
-        coords_arr[y][x][1],
-        coords_arr[y + 1][x][0],
-        coords_arr[y + 1][x][1],
+        coords_arr[y][x][0] + padding_w,
+        coords_arr[y][x][1] + padding_h,
+        coords_arr[y + 1][x][0] + padding_w,
+        coords_arr[y + 1][x][1] + padding_h,
         mlx_ptr
     );
     draw_line(
-        coords_arr[y][x + 1][0],
-        coords_arr[y][x + 1][1],
-        coords_arr[y + 1][x + 1][0],
-        coords_arr[y + 1][x + 1][1],
+        coords_arr[y][x + 1][0] + padding_w,
+        coords_arr[y][x + 1][1] + padding_h,
+        coords_arr[y + 1][x + 1][0] + padding_w,
+        coords_arr[y + 1][x + 1][1] + padding_h,
         mlx_ptr
     );
     draw_line(
-        coords_arr[y + 1][x + 1][0],
-        coords_arr[y + 1][x + 1][1],
-        coords_arr[y + 1][x][0],
-        coords_arr[y + 1][x][1],
+        coords_arr[y + 1][x + 1][0] + padding_w,
+        coords_arr[y + 1][x + 1][1] + padding_h,
+        coords_arr[y + 1][x][0] + padding_w,
+        coords_arr[y + 1][x][1] + padding_h,
         mlx_ptr
     );
 }

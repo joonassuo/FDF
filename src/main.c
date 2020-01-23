@@ -6,7 +6,7 @@
 /*   By: jsuonper <jsuonper@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/02 13:19:25 by jsuonper          #+#    #+#             */
-/*   Updated: 2020/01/23 12:00:35 by jsuonper         ###   ########.fr       */
+/*   Updated: 2020/01/23 12:22:00 by jsuonper         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int					main(int ac, char **av)
 {
 	void			*mlx_ptr;
 	void			*win_ptr;
-	int				*size;
+	double			*size;
 	double			***coords_arr;
 	int				fd;
 	double			angle;
