@@ -6,7 +6,7 @@
 #    By: jsuonper <jsuonper@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/02 14:48:04 by jsuonper          #+#    #+#              #
-#    Updated: 2020/01/23 12:54:03 by jsuonper         ###   ########.fr        #
+#    Updated: 2020/01/23 14:56:46 by jsuonper         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,8 +22,7 @@ SRCS_LIST = main.c\
 			rotate.c\
 			make_grid.c\
 			rotate_grid.c\
-			rot_g_onkey.c\
-			draw_axis.c
+			rot_g_onkey.c
 SRCS = $(addprefix $(SRCS_DIR), $(SRCS_LIST))
 
 #INCLUDES
@@ -43,6 +42,10 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	make -C libft
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(LIBFT) -lmlx -framework OpenGL -framework AppKit
+
+debug: $(OBJ)
+	make -C libft
+	$(CC) -g $(CFLAGS) -o $(NAME) $(OBJ) $(LIBFT) -lmlx -framework OpenGL -framework AppKit
 
 clean:
 	make clean -C libft 

@@ -6,23 +6,23 @@
 /*   By: jsuonper <jsuonper@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 13:43:36 by jsuonper          #+#    #+#             */
-/*   Updated: 2020/01/23 12:56:46 by jsuonper         ###   ########.fr       */
+/*   Updated: 2020/01/23 15:48:11 by jsuonper         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 #include <stdio.h>
 
-double              *count_size(int fd)
+int                 *count_size(int fd)
 {
     char            *line;
     char            **array;
-    double          *res;
+    int             *res;
     int             rows;
     int             columns;
-    double          ret;
+    int             ret;
 
-    res = (double*)malloc(sizeof(double) * 2);
+    res = (int*)malloc(sizeof(int) * 2);
     rows = 0;
     while ((ret = get_next_line(fd, &line)))
     {
@@ -34,11 +34,13 @@ double              *count_size(int fd)
     }
     res[0] = rows;
     res[1] = columns;
-    return ((double*)res);
+    return ((int*)res);
 }
 
-double              ***make_3d_array(int fd, double *size)
+double              ***make_3d_array(int fd, int *size)
 {
+    printf("%d\n", size[0]);
+    printf("%d\n", size[1]);
     char            *line;
     char            **num_array;
     double          ***coords_array;
@@ -47,10 +49,15 @@ double              ***make_3d_array(int fd, double *size)
     int             ret;
 
     coords_array = (double***)malloc(sizeof(double**) * size[0] + 1);
+    line = ft_strnew(LINE_BUFF);
     i = 0;
     while (i < size[0])
     {
+        printf("%d\n", i);
+        printf("fd: %d\n", fd);
         ret = get_next_line(fd, &line);
+        printf("get next line: %d\n", ret);
+        printf("%d\n", i);
         num_array = ft_strsplit(line, ' ');
         j = 0;
         coords_array[i] = (double**)malloc(sizeof(double*) * size[1] + 1);
@@ -71,8 +78,11 @@ double              ***make_3d_array(int fd, double *size)
             j++;
         }
         free(num_array);
+        printf("%d\n", i);
         i++;
+        ft_strclr(line);
     }
+    ft_strdel(&line);
     coords_array[i] = NULL;
     return (coords_array);
 }

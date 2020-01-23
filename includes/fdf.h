@@ -6,16 +6,18 @@
 /*   By: jsuonper <jsuonper@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/02 13:48:52 by jsuonper          #+#    #+#             */
-/*   Updated: 2020/01/23 13:09:51 by jsuonper         ###   ########.fr       */
+/*   Updated: 2020/01/23 15:46:00 by jsuonper         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 
 # define FDF_H
-# define GRID_SZ 20
-# define WIN_H 1000
-# define WIN_W 2000
+# define GRID_SZ 00000.1
+# define WIN_H 1500
+# define WIN_W 2500
+# define Z_CHANGE 10
+# define LINE_BUFF 1000
 # include "../miniLibX/mlx.h"
 # include "../libft/libft.h"
 # include "../libft/get_next_line.h"
@@ -55,8 +57,8 @@ typedef struct		s_mlx_struct
 	void			*payload;
 }					t_mlx_struct;
 
-double              *count_size(int fd);
-double				***make_3d_array(int fd, double *size);
+int		            *count_size(int fd);
+double				***make_3d_array(int fd, int *size);
 t_3d_coords			*create_3d_coords(int x, int y, int z);
 t_coords			*create_coords(int x0, int y0, int x1, int y1);
 t_cube_coords       *create_cube_coords(t_3d_coords *top_left);
