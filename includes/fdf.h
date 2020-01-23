@@ -6,15 +6,15 @@
 /*   By: jsuonper <jsuonper@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/02 13:48:52 by jsuonper          #+#    #+#             */
-/*   Updated: 2020/01/21 14:54:46 by jsuonper         ###   ########.fr       */
+/*   Updated: 2020/01/23 12:02:07 by jsuonper         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 
 # define FDF_H
-# define GRID_SZ 50
-# define WIN_H 2000
+# define GRID_SZ 20
+# define WIN_H 1000
 # define WIN_W 2000
 # include "../miniLibX/mlx.h"
 # include "../libft/libft.h"
@@ -56,21 +56,20 @@ typedef struct		s_mlx_struct
 }					t_mlx_struct;
 
 int                 *count_size(int fd);
-int					***make_3d_array(int fd, int *size);
+double				***make_3d_array(int fd, int *size);
 t_3d_coords			*create_3d_coords(int x, int y, int z);
 t_coords			*create_coords(int x0, int y0, int x1, int y1);
 t_cube_coords       *create_cube_coords(t_3d_coords *top_left);
 t_mlx_struct		*create_mlx_struct(void *mlx_ptr, void *win_ptr, t_coords *coords, void *payload);
 void        		draw_cube(t_cube_coords *cube_coords, t_mlx_struct *mlx);
-void            	draw_grid(t_mlx_struct *mlx_ptr, int ***coords_arr);
+void            	draw_grid(t_mlx_struct *mlx_ptr, double ***coords_arr);
 void				draw_line(int x0, int y0, int x1, int y1, t_mlx_struct *param);
 void            	make_square(t_mlx_struct *param);
 int					rot_g_onkey(int keycode, t_mlx_struct *coords_ptr);
-void	            draw_grid(t_mlx_struct *mlx_ptr, int ***coords_arr);
 void		        rotate_cube_z(t_cube_coords *cube_coords, double angle);
 void		        rotate_cube_x(t_cube_coords *cube_coords, double angle);
 void		        rotate_cube_y(t_cube_coords *cube_coords, double angle);
-void        		rot_grid(int ***coords_arr, double angle, char axel);
+void        		rot_grid(double ***coords_arr, double angle, char axel);
 void		        rotate_x(t_3d_coords *coords, double angle);
 void		        rotate_y(t_3d_coords *coords, double angle);
 void		        rotate_z(t_3d_coords *coords, double angle);
