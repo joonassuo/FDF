@@ -6,7 +6,7 @@
 /*   By: jsuonper <jsuonper@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/02 13:19:25 by jsuonper          #+#    #+#             */
-/*   Updated: 2020/01/23 12:22:00 by jsuonper         ###   ########.fr       */
+/*   Updated: 2020/01/23 13:11:29 by jsuonper         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ int					main(int ac, char **av)
 
 	angle = 0.05;
 
-
 	// INITIALIZE MLX:
 	mlx_ptr = mlx_init();
 	win_ptr = mlx_new_window(mlx_ptr, WIN_W, WIN_H, "test");
@@ -39,13 +38,15 @@ int					main(int ac, char **av)
 	close(fd);
 	fd = open(av[1], O_RDONLY);
 	coords_arr = make_3d_array(fd, size);
-//	rot_grid(coords_arr, asin(tan(30)), 'x');
-//	rot_grid(coords_arr, 45, 'y');
+	rot_grid(coords_arr, asin(tan(0.523599)), 'x');
+	rot_grid(coords_arr, 0.785398, 'y');
 	draw_grid(mlx_ptr, coords_arr);
 
 	// ROTATE ONKEY:
 	coords_ptr = create_mlx_struct(mlx_ptr, win_ptr, 0, coords_arr);
 	mlx_key_hook(win_ptr, rot_g_onkey, coords_ptr);
+
+	
 	mlx_loop(mlx_ptr);
 
 	return (ac);

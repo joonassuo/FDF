@@ -6,7 +6,7 @@
 /*   By: jsuonper <jsuonper@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/02 13:48:52 by jsuonper          #+#    #+#             */
-/*   Updated: 2020/01/23 12:22:35 by jsuonper         ###   ########.fr       */
+/*   Updated: 2020/01/23 13:09:51 by jsuonper         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,7 @@ void        		rot_grid(double ***coords_arr, double angle, char axel);
 void		        rotate_x(t_3d_coords *coords, double angle);
 void		        rotate_y(t_3d_coords *coords, double angle);
 void		        rotate_z(t_3d_coords *coords, double angle);
+void		        draw_axis(t_mlx_struct *mlx_ptr);
+
 
 #endif
