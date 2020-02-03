@@ -6,7 +6,7 @@
 /*   By: jsuonper <jsuonper@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 14:42:18 by jsuonper          #+#    #+#             */
-/*   Updated: 2020/01/23 13:44:29 by jsuonper         ###   ########.fr       */
+/*   Updated: 2020/02/03 17:24:38 by jsuonper         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,10 @@ int				rot_g_onkey(int keycode, t_mlx_struct *coords_ptr)
 		rot_grid(coords_ptr->payload, angle, 'z');
 		mlx_clear_window(coords_ptr->mlx_ptr, coords_ptr->win_ptr);
 		draw_grid(coords_ptr->mlx_ptr, coords_ptr->payload);
+	}
+	else if (keycode == 53)
+	{
+		free_3d_array(coords_ptr);
 	}
 	
 	return (keycode);

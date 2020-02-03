@@ -6,7 +6,7 @@
 /*   By: jsuonper <jsuonper@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 13:43:36 by jsuonper          #+#    #+#             */
-/*   Updated: 2020/02/03 16:34:15 by jsuonper         ###   ########.fr       */
+/*   Updated: 2020/02/03 17:41:50 by jsuonper         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,14 @@ int                 *count_size(int fd)
     int             ret;
     int             i;
 
-    res = (int*)malloc(sizeof(int) * 3);
+    printf("count_size\n");
+    res = (int*)malloc(sizeof(int) * 2);
     rows = 0;
     columns = 0;
     i = 0;
     while ((ret = get_next_line(fd, &line)))
         rows++;
+    printf("line: %s\n", line);
     while (line[i])
     {
         while (line[i] >= '0' && line[i] <= '9')
@@ -56,12 +58,14 @@ double              ***make_3d_array(int fd, int *size)
     int             k;
     int             ret;
 
-    coords_array = (double***)malloc(sizeof(double**) * size[0] + 1);
+    printf("size[0]: %d\n", size[0]);
+    printf("size[1]: %d\n", size[1]);
+    coords_array = (double***)malloc(sizeof(double**) * size[0]);
     i = 0;
     j = 0;
     while ((ret = get_next_line(fd, &line)) == 1)
     {
-        coords_array[i] = (double**)malloc(sizeof(double*) * size[1] + 1);
+        coords_array[i] = (double**)malloc(sizeof(double*) * size[1]);
         printf("toploop\n");
         j = 0;
         k = 0;
@@ -80,13 +84,20 @@ double              ***make_3d_array(int fd, int *size)
             number = (double)ft_atoi(value);
             printf("number: %f\ni: %d\nj: %d\n", number, i, j);
             coords_array[i][j] = (double*)malloc(sizeof(double) * 3 + 1);
+            printf("malloc\n");
             coords_array[i][j][0] = (double)(0 - ((size[0] - 1) * GRID_SZ / 2) + (j * GRID_SZ));
+            printf("1\n");
             coords_array[i][j][1] = (double)(0 - ((size[1] - 1) * GRID_SZ / 2) + (i * GRID_SZ));
+            printf("2\n");
             coords_array[i][j][2] = (double)number * GRID_SZ;
+            printf("3\n");
             coords_array[i][j][3] = '\0';
+            printf("ennnnd\n");
             j++;
         }
+        printf("line[k]: %c\n", line[k]);
         coords_array[i][j] = NULL;
+        printf("NULL\n");
         i++;
     }
     coords_array[i] = NULL;

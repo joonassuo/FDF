@@ -6,7 +6,7 @@
 /*   By: jsuonper <jsuonper@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/02 13:48:52 by jsuonper          #+#    #+#             */
-/*   Updated: 2020/02/03 14:17:53 by jsuonper         ###   ########.fr       */
+/*   Updated: 2020/02/03 17:24:03 by jsuonper         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ typedef struct		s_mlx_struct
 }					t_mlx_struct;
 
 int		            *count_size(int fd);
+int					rot_g_onkey(int keycode, t_mlx_struct *coords_ptr);
 double				***make_3d_array(int fd, int *size);
 t_3d_coords			*create_3d_coords(int x, int y, int z);
 t_coords			*create_coords(int x0, int y0, int x1, int y1);
@@ -66,8 +67,8 @@ t_mlx_struct		*create_mlx_struct(void *mlx_ptr, void *win_ptr, t_coords *coords,
 void        		draw_cube(t_cube_coords *cube_coords, t_mlx_struct *mlx);
 void            	draw_grid(t_mlx_struct *mlx_ptr, double ***coords_arr);
 void				draw_line(int x0, int y0, int x1, int y1, t_mlx_struct *param);
+void            	free_3d_array(t_mlx_struct *ptr);
 void            	make_square(t_mlx_struct *param);
-int					rot_g_onkey(int keycode, t_mlx_struct *coords_ptr);
 void		        rotate_cube_z(t_cube_coords *cube_coords, double angle);
 void		        rotate_cube_x(t_cube_coords *cube_coords, double angle);
 void		        rotate_cube_y(t_cube_coords *cube_coords, double angle);
