@@ -6,7 +6,7 @@
 /*   By: jsuonper <jsuonper@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 12:32:38 by jsuonper          #+#    #+#             */
-/*   Updated: 2020/01/23 13:08:28 by jsuonper         ###   ########.fr       */
+/*   Updated: 2020/02/03 16:32:43 by jsuonper         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void        rot_coords(double *coords, double angle, char axel)
 
 void        rot_grid(double ***coords_arr, double angle, char axel)
 {
+    printf("rot grid\n");
     int     i;
     int     j;
 

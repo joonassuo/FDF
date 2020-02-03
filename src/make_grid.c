@@ -6,7 +6,7 @@
 /*   By: jsuonper <jsuonper@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 13:43:36 by jsuonper          #+#    #+#             */
-/*   Updated: 2020/02/03 14:56:41 by jsuonper         ###   ########.fr       */
+/*   Updated: 2020/02/03 16:34:15 by jsuonper         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,21 +22,21 @@ int                 *count_size(int fd)
     int             ret;
     int             i;
 
-    res = (int*)malloc(sizeof(int) * 2);
+    res = (int*)malloc(sizeof(int) * 3);
     rows = 0;
     columns = 0;
     i = 0;
     while ((ret = get_next_line(fd, &line)))
         rows++;
-    printf("line : %s\n", line);
     while (line[i])
     {
-        while (line[i] != ' ')
+        while (line[i] >= '0' && line[i] <= '9')
             i++;
         columns++;
         while (line[i] == ' ')
             i++;
     }
+    printf("i: %d\n", i);
     printf("rows: %d\n", rows);
     printf("columns: %d\n", columns);
     res[0] = rows;
@@ -59,32 +59,38 @@ double              ***make_3d_array(int fd, int *size)
     coords_array = (double***)malloc(sizeof(double**) * size[0] + 1);
     i = 0;
     j = 0;
-    coords_array[i] = (double**)malloc(sizeof(double*) * size[1] + 1);
     while ((ret = get_next_line(fd, &line)) == 1)
     {
+        coords_array[i] = (double**)malloc(sizeof(double*) * size[1] + 1);
+        printf("toploop\n");
         j = 0;
         k = 0;
-        while (line[k])
+        while (line[k] != '\0')
         {
             while (line[k] == ' ')
                 k++;
             start = k;
-            while (line[k] != ' ')
+            printf("start: %d\n", start);
+            while (line[k] != ' ' && line[k] != '\0')
                 k++;
-            value = ft_strsub((char const*)line, (unsigned int)start, (size_t)j - start);
+            printf("end: %d\n", k);
+            printf("line : %s\n", line);
+            value = ft_strsub((char const*)line, (unsigned int)start, (size_t)k - start);
             printf("value: %s\n", value);
             number = (double)ft_atoi(value);
+            printf("number: %f\ni: %d\nj: %d\n", number, i, j);
             coords_array[i][j] = (double*)malloc(sizeof(double) * 3 + 1);
             coords_array[i][j][0] = (double)(0 - ((size[0] - 1) * GRID_SZ / 2) + (j * GRID_SZ));
             coords_array[i][j][1] = (double)(0 - ((size[1] - 1) * GRID_SZ / 2) + (i * GRID_SZ));
             coords_array[i][j][2] = (double)number * GRID_SZ;
             coords_array[i][j][3] = '\0';
-            k++;
             j++;
         }
+        coords_array[i][j] = NULL;
         i++;
     }
     coords_array[i] = NULL;
+    printf("end of make 3d arr\n");
     return (coords_array);
 }
 
