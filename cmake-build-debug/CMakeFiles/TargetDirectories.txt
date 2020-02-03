@@ -1,0 +1,4 @@
+/Users/jsuonper/fdf/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/jsuonper/fdf/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/jsuonper/fdf/cmake-build-debug/CMakeFiles/ft.dir
+/Users/jsuonper/fdf/cmake-build-debug/CMakeFiles/fdf.dir
