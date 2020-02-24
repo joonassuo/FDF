@@ -6,7 +6,7 @@
 /*   By: jsuonper <jsuonper@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 13:43:36 by jsuonper          #+#    #+#             */
-/*   Updated: 2020/02/03 17:41:50 by jsuonper         ###   ########.fr       */
+/*   Updated: 2020/02/24 15:53:27 by jsuonper         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,28 +21,50 @@ int                 *count_size(int fd)
     int             columns;
     int             ret;
     int             i;
+    int             first;
 
     printf("count_size\n");
-    res = (int*)malloc(sizeof(int) * 2);
+    if (!(res = (int*)malloc(sizeof(int) * 2)))
+    {
+        ft_putendl("ERROR: malloc, count_size, int array");
+        exit (0);
+    }
+    if (!(line = (char*)malloc(sizeof(char) * 1000)))
+    {
+        ft_putendl("ERROR: malloc, count_size, line char array");
+        exit (0);
+    }
     rows = 0;
     columns = 0;
     i = 0;
-    while ((ret = get_next_line(fd, &line)))
-        rows++;
-    printf("line: %s\n", line);
-    while (line[i])
+    first = 1;
+
+
+    while ((ret = get_next_line(fd, &line)) == 1)
     {
-        while (line[i] >= '0' && line[i] <= '9')
-            i++;
-        columns++;
-        while (line[i] == ' ')
-            i++;
-    }
+        printf("%s\n", line);
+        if (first)
+        {
+            while (line[i])
+            {
+                while ((line[i] >= '0' && line[i] <= '9') || line[i] == '-')
+                    i++;
+                columns++;
+                while (line[i] == ' ')
+                    i++;
+            }
+            first = 0;
+        }
+        rows++;
+        ft_strclr(line);
+    }    
+    
     printf("i: %d\n", i);
     printf("rows: %d\n", rows);
     printf("columns: %d\n", columns);
     res[0] = rows;
     res[1] = columns;
+    free(line);
     return (res);
 }
 

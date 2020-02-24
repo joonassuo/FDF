@@ -6,7 +6,7 @@
 /*   By: jsuonper <jsuonper@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/02 13:19:25 by jsuonper          #+#    #+#             */
-/*   Updated: 2020/02/03 17:52:53 by jsuonper         ###   ########.fr       */
+/*   Updated: 2020/02/24 14:57:52 by jsuonper         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,27 +28,42 @@ int					main(int ac, char **av)
 	angle = 0.05;
 
 	// INITIALIZE MLX:
-	mlx_ptr = mlx_init();
-	win_ptr = mlx_new_window(mlx_ptr, WIN_W, WIN_H, "test");
-	
+
+	if (!(mlx_ptr = mlx_init()))
+	{
+		ft_putendl("ERROR: mlx_init");
+		exit (0);
+	}
+	if (!(win_ptr = mlx_new_window(mlx_ptr, WIN_W, WIN_H, "test")))
+	{
+		ft_putendl("ERROR: win_ptr");
+		exit (0);
+	}
 
 	// MAKE GRID:
-	fd = open(av[1], O_RDONLY);
-	printf("fd: %d\n", fd);
-	printf("open\n");
+	if ((fd = open(av[1], O_RDONLY)) == -1)
+	{
+		ft_putendl("ERROR: open");
+		exit (0);
+	}
 	size = count_size(fd);
-	printf("size\n");
-	close(fd);
-	printf("close\n");
-	fd = open(av[1], O_RDONLY);
-	printf("open\n");
+	
+	if (close(fd) == -1)
+	{
+		ft_putendl("ERROR: close");
+		exit (0);
+	}
+	if ((fd = open(av[1], O_RDONLY)) == -1)
+	{
+		ft_putendl("ERROR: open");
+		exit (0);
+	}
 	coords_arr = make_3d_array(fd, size);
 	printf("coords arr\n");
 	if (close(fd) == -1)
 	{
-		printf("close error");
-	} else {
-		printf("close successful\n");
+		ft_putendl("ERROR: close");
+		exit (0);
 	}
 	
 	rot_grid(coords_arr, asin(tan(0.523599)), 'x');
