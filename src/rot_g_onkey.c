@@ -6,7 +6,7 @@
 /*   By: jsuonper <jsuonper@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 14:42:18 by jsuonper          #+#    #+#             */
-/*   Updated: 2020/02/25 16:09:00 by jsuonper         ###   ########.fr       */
+/*   Updated: 2020/02/25 16:56:25 by jsuonper         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,11 @@
 #include <stdio.h>
 
 
-void			change_z(double ***coords_arr, char *param)
+void			zoom_in(void)
 {
-	int			i;
-	int			j;
-	int			change;
-
-	i = 0;
-	change = (ft_strcmp(param, "increase") == 0) ? Z_CHANGE : -Z_CHANGE;
-
-	while (coords_arr[i])
-	{
-		j = 0;
-		while (coords_arr[i][j])
-		{
-			coords_arr[i][j][2] += change;
-			j++;
-		}
-		i++;
-	}
+	printf("lol");
+	#undef GRID_SZ
+	# define GRID_SZ 20
 }
 
 int				rot_g_onkey(int keycode, t_mlx_struct *coords_ptr)
@@ -41,13 +27,12 @@ int				rot_g_onkey(int keycode, t_mlx_struct *coords_ptr)
 
 	if (keycode == 0)
 	{
-		change_z(coords_ptr->payload, "increase");
+		zoom_in();
 		mlx_clear_window(coords_ptr->mlx_ptr, coords_ptr->win_ptr);
 		draw_grid(coords_ptr->mlx_ptr, coords_ptr->payload, coords_ptr->size);
 	}
 	else if (keycode == 1)
 	{
-		change_z(coords_ptr->payload, "decrease");
 		mlx_clear_window(coords_ptr->mlx_ptr, coords_ptr->win_ptr);
 		draw_grid(coords_ptr->mlx_ptr, coords_ptr->payload, coords_ptr->size);
 	}
