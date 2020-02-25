@@ -6,7 +6,7 @@
 /*   By: jsuonper <jsuonper@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 14:42:18 by jsuonper          #+#    #+#             */
-/*   Updated: 2020/02/03 17:24:38 by jsuonper         ###   ########.fr       */
+/*   Updated: 2020/02/25 16:09:00 by jsuonper         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,55 +43,55 @@ int				rot_g_onkey(int keycode, t_mlx_struct *coords_ptr)
 	{
 		change_z(coords_ptr->payload, "increase");
 		mlx_clear_window(coords_ptr->mlx_ptr, coords_ptr->win_ptr);
-		draw_grid(coords_ptr->mlx_ptr, coords_ptr->payload);
+		draw_grid(coords_ptr->mlx_ptr, coords_ptr->payload, coords_ptr->size);
 	}
 	else if (keycode == 1)
 	{
 		change_z(coords_ptr->payload, "decrease");
 		mlx_clear_window(coords_ptr->mlx_ptr, coords_ptr->win_ptr);
-		draw_grid(coords_ptr->mlx_ptr, coords_ptr->payload);
+		draw_grid(coords_ptr->mlx_ptr, coords_ptr->payload, coords_ptr->size);
 	}
 	else if (keycode == 126)
 	{
 		angle = 0.05;
-		rot_grid(coords_ptr->payload, angle, 'x');
+		rot_grid(coords_ptr->payload, coords_ptr->size, angle, 'x');
 		mlx_clear_window(coords_ptr->mlx_ptr, coords_ptr->win_ptr);
-		draw_grid(coords_ptr->mlx_ptr, coords_ptr->payload);
+		draw_grid(coords_ptr->mlx_ptr, coords_ptr->payload, coords_ptr->size);
 	}
 	else if (keycode == 125)
 	{
 		angle = -0.05;
-		rot_grid(coords_ptr->payload, angle, 'x');
+		rot_grid(coords_ptr->payload, coords_ptr->size, angle, 'x');
 		mlx_clear_window(coords_ptr->mlx_ptr, coords_ptr->win_ptr);
-		draw_grid(coords_ptr->mlx_ptr, coords_ptr->payload);
+		draw_grid(coords_ptr->mlx_ptr, coords_ptr->payload, coords_ptr->size);
 	}
 	else if (keycode == 124)
 	{
 		angle = 0.05;
-		rot_grid(coords_ptr->payload, angle, 'y');
+		rot_grid(coords_ptr->payload, coords_ptr->size, angle, 'y');
 		mlx_clear_window(coords_ptr->mlx_ptr, coords_ptr->win_ptr);
-		draw_grid(coords_ptr->mlx_ptr, coords_ptr->payload);;
+		draw_grid(coords_ptr->mlx_ptr, coords_ptr->payload, coords_ptr->size);
 	}
 	else if (keycode == 123)
 	{
 		angle = -0.05;
-		rot_grid(coords_ptr->payload, angle, 'y');
+		rot_grid(coords_ptr->payload, coords_ptr->size, angle, 'y');
 		mlx_clear_window(coords_ptr->mlx_ptr, coords_ptr->win_ptr);
-		draw_grid(coords_ptr->mlx_ptr, coords_ptr->payload);
+		draw_grid(coords_ptr->mlx_ptr, coords_ptr->payload, coords_ptr->size);
 	}
 	else if (keycode == 43)
 	{
 		angle = 0.05;
-		rot_grid(coords_ptr->payload, angle, 'z');
+		rot_grid(coords_ptr->payload, coords_ptr->size, angle, 'z');
 		mlx_clear_window(coords_ptr->mlx_ptr, coords_ptr->win_ptr);
-		draw_grid(coords_ptr->mlx_ptr, coords_ptr->payload);
+		draw_grid(coords_ptr->mlx_ptr, coords_ptr->payload, coords_ptr->size);
 	}
 	else if (keycode == 47)
 	{
 		angle = -0.05;
-		rot_grid(coords_ptr->payload, angle, 'z');
+		rot_grid(coords_ptr->payload, coords_ptr->size, angle, 'z');
 		mlx_clear_window(coords_ptr->mlx_ptr, coords_ptr->win_ptr);
-		draw_grid(coords_ptr->mlx_ptr, coords_ptr->payload);
+		draw_grid(coords_ptr->mlx_ptr, coords_ptr->payload, coords_ptr->size);
 	}
 	else if (keycode == 53)
 	{

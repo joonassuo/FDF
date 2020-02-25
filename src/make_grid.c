@@ -6,7 +6,7 @@
 /*   By: jsuonper <jsuonper@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 13:43:36 by jsuonper          #+#    #+#             */
-/*   Updated: 2020/02/24 15:53:27 by jsuonper         ###   ########.fr       */
+/*   Updated: 2020/02/25 16:08:00 by jsuonper         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ int                 *count_size(int fd)
     int             i;
     int             first;
 
-    printf("count_size\n");
     if (!(res = (int*)malloc(sizeof(int) * 2)))
     {
         ft_putendl("ERROR: malloc, count_size, int array");
@@ -59,9 +58,6 @@ int                 *count_size(int fd)
         ft_strclr(line);
     }    
     
-    printf("i: %d\n", i);
-    printf("rows: %d\n", rows);
-    printf("columns: %d\n", columns);
     res[0] = rows;
     res[1] = columns;
     free(line);
@@ -80,15 +76,20 @@ double              ***make_3d_array(int fd, int *size)
     int             k;
     int             ret;
 
-    printf("size[0]: %d\n", size[0]);
-    printf("size[1]: %d\n", size[1]);
-    coords_array = (double***)malloc(sizeof(double**) * size[0]);
+    if (!(coords_array = (double***)malloc(sizeof(double**) * size[0])))
+    {
+        ft_putendl("ERROR: malloc, make_3d_array, coords_array");
+        exit (0);
+    }
     i = 0;
     j = 0;
     while ((ret = get_next_line(fd, &line)) == 1)
     {
-        coords_array[i] = (double**)malloc(sizeof(double*) * size[1]);
-        printf("toploop\n");
+        if (!(coords_array[i] = (double**)malloc(sizeof(double*) * size[1])))
+        {
+            ft_putendl("ERROR: malloc, make_3d_array, coords_array");
+            exit (0);
+        }
         j = 0;
         k = 0;
         while (line[k] != '\0')
@@ -96,30 +97,22 @@ double              ***make_3d_array(int fd, int *size)
             while (line[k] == ' ')
                 k++;
             start = k;
-            printf("start: %d\n", start);
             while (line[k] != ' ' && line[k] != '\0')
                 k++;
-            printf("end: %d\n", k);
-            printf("line : %s\n", line);
             value = ft_strsub((char const*)line, (unsigned int)start, (size_t)k - start);
-            printf("value: %s\n", value);
             number = (double)ft_atoi(value);
-            printf("number: %f\ni: %d\nj: %d\n", number, i, j);
-            coords_array[i][j] = (double*)malloc(sizeof(double) * 3 + 1);
-            printf("malloc\n");
+            if (!(coords_array[i][j] = (double*)malloc(sizeof(double) * 3)))
+            {
+                ft_putendl("ERROR: malloc, make_3d_array, coords_array[i][j]");
+                exit (0);
+            }
             coords_array[i][j][0] = (double)(0 - ((size[0] - 1) * GRID_SZ / 2) + (j * GRID_SZ));
-            printf("1\n");
             coords_array[i][j][1] = (double)(0 - ((size[1] - 1) * GRID_SZ / 2) + (i * GRID_SZ));
-            printf("2\n");
             coords_array[i][j][2] = (double)number * GRID_SZ;
-            printf("3\n");
-            coords_array[i][j][3] = '\0';
-            printf("ennnnd\n");
+            //coords_array[i][j][3] = '\0';
             j++;
         }
-        printf("line[k]: %c\n", line[k]);
         coords_array[i][j] = NULL;
-        printf("NULL\n");
         i++;
     }
     coords_array[i] = NULL;
@@ -239,16 +232,16 @@ void            draw_square(t_mlx_struct *mlx_ptr, double ***coords_arr, int x, 
     );
 }
 
-void            draw_grid(t_mlx_struct *mlx_ptr, double ***coords_arr)
+void            draw_grid(t_mlx_struct *mlx_ptr, double ***coords_arr, int *size)
 {
     int         i;
     int         j;
 
     i = 0;
-    while (coords_arr[i + 1])
+    while (i < size[0] - 1)
     {
         j = 0;
-        while (coords_arr[i][j + 1])
+        while (j < size[1] - 1)
         {
             draw_square(mlx_ptr, coords_arr, j, i);
             j++;

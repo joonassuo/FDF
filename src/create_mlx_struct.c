@@ -6,14 +6,14 @@
 /*   By: jsuonper <jsuonper@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/02 16:54:42 by jsuonper          #+#    #+#             */
-/*   Updated: 2020/01/07 11:31:54 by jsuonper         ###   ########.fr       */
+/*   Updated: 2020/02/25 15:52:47 by jsuonper         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 #include <stdlib.h>
 
-t_mlx_struct		*create_mlx_struct(void *mlx_ptr, void *win_ptr, t_coords *coords, void *payload)
+t_mlx_struct		*create_mlx_struct(void *mlx_ptr, void *win_ptr, t_coords *coords, void *payload, int *size)
 {
 	t_mlx_struct	*ret;
 
@@ -23,5 +23,6 @@ t_mlx_struct		*create_mlx_struct(void *mlx_ptr, void *win_ptr, t_coords *coords,
 	ret->win_ptr = win_ptr;
 	ret->coords = coords;
 	ret->payload = payload;
+	ret->size = size;
 	return (ret);
 }

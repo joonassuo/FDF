@@ -6,7 +6,7 @@
 /*   By: jsuonper <jsuonper@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/02 13:19:25 by jsuonper          #+#    #+#             */
-/*   Updated: 2020/02/24 14:57:52 by jsuonper         ###   ########.fr       */
+/*   Updated: 2020/02/25 16:08:01 by jsuonper         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,21 +59,18 @@ int					main(int ac, char **av)
 		exit (0);
 	}
 	coords_arr = make_3d_array(fd, size);
-	printf("coords arr\n");
 	if (close(fd) == -1)
 	{
 		ft_putendl("ERROR: close");
 		exit (0);
 	}
-	
-	rot_grid(coords_arr, asin(tan(0.523599)), 'x');
-	rot_grid(coords_arr, 0.785398, 'y');
-	printf("rot_grid");
-	draw_grid(mlx_ptr, coords_arr);
-	printf("draw grid\n");
+
+	rot_grid(coords_arr, size, asin(tan(0.523599)), 'x');
+	rot_grid(coords_arr, size, 0.785398, 'y');
+	draw_grid(mlx_ptr, coords_arr, size);
 
 	// ROTATE ONKEY:
-	coords_ptr = create_mlx_struct(mlx_ptr, win_ptr, 0, coords_arr);
+	coords_ptr = create_mlx_struct(mlx_ptr, win_ptr, 0, coords_arr, size);
 	mlx_key_hook(win_ptr, rot_g_onkey, coords_ptr);
 
 	
