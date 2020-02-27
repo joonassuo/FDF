@@ -6,7 +6,7 @@
 /*   By: jsuonper <jsuonper@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 13:43:36 by jsuonper          #+#    #+#             */
-/*   Updated: 2020/02/25 16:11:28 by jsuonper         ###   ########.fr       */
+/*   Updated: 2020/02/27 17:14:07 by jsuonper         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ double              ***make_3d_array(int fd, int *size)
     int             k;
     int             ret;
 
-    if (!(coords_array = (double***)malloc(sizeof(double**) * size[0])))
+    if (!(coords_array = (double***)malloc(sizeof(double**) * size[0] + 1)))
     {
         ft_putendl("ERROR: malloc, make_3d_array, coords_array");
         exit (0);
@@ -85,7 +85,7 @@ double              ***make_3d_array(int fd, int *size)
     j = 0;
     while ((ret = get_next_line(fd, &line)) == 1)
     {
-        if (!(coords_array[i] = (double**)malloc(sizeof(double*) * size[1])))
+        if (!(coords_array[i] = (double**)malloc(sizeof(double*) * size[1] + 1)))
         {
             ft_putendl("ERROR: malloc, make_3d_array, coords_array");
             exit (0);
