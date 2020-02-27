@@ -6,12 +6,13 @@
 /*   By: jsuonper <jsuonper@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/02 17:44:59 by jsuonper          #+#    #+#             */
-/*   Updated: 2020/02/27 18:02:39 by jsuonper         ###   ########.fr       */
+/*   Updated: 2020/02/27 19:00:45 by jsuonper         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 #include <stdlib.h>
+#include <math.h>
 
 t_rgb		*create_rgb_struct(int r, int g, int b)
 {
@@ -39,30 +40,34 @@ t_rgb		*hex_to_rgb(int hex)
 	return (rgb);
 }
 
-void        draw_line(int x0, int y0, int x1, int y1, t_mlx_struct *param)
+void        	draw_line(t_3d_coords *p0, t_3d_coords *p1, t_mlx_struct *param)
 {
-	int dx = abs(x1 - x0);
-	int sx = x0 < x1 ? 1 : -1;
-	int dy = abs(y1 - y0);
-	int sy = y0 < y1 ? 1 : -1;
+	double		padding_w;
+    double		padding_h;
+	int dx = abs(p1->x - p0->x);
+	int sx = p0->x < p1->x ? 1 : -1;
+	int dy = abs(p1->y - p0->y);
+	int sy = p0->y < p1->y ? 1 : -1;
 	int err = (dx > dy ? dx : -dy) / 2;
+    padding_h = WIN_H / 2;
+    padding_w = WIN_W / 2;
 	int e2;
 
 	while(1)
 	{
-		mlx_pixel_put(param->mlx_ptr, param->win_ptr, x0, y0, 0xFFFFF);
-		if (x0 == x1 && y0 == y1)
+		mlx_pixel_put(param->mlx_ptr, param->win_ptr, p0->x + padding_w, p0->y + padding_h, 0xFFFFF);
+		if (p0->x == p1->x && p0->y == p1->y)
 			break;
 		e2 = err;
 		if (e2 >-dx)
 		{
 			err -= dy;
-			x0 += sx;
+			p0->x += sx;
 		}
 		if (e2 < dy)
 		{
 			err += dx;
-			y0 += sy;
+			p0->y += sy;
 		}
 	}
 }

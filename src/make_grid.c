@@ -6,7 +6,7 @@
 /*   By: jsuonper <jsuonper@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 13:43:36 by jsuonper          #+#    #+#             */
-/*   Updated: 2020/02/27 17:14:07 by jsuonper         ###   ########.fr       */
+/*   Updated: 2020/02/27 19:00:13 by jsuonper         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,41 +120,23 @@ double              ***make_3d_array(int fd, int *size)
     return (coords_array);
 }
 
-void            draw_square(t_mlx_struct *mlx_ptr, double ***coords_arr, int x, int y)
+void                draw_square(t_mlx_struct *mlx_ptr, double ***coords_arr, int x, int y)
 {
-    double      padding_w;
-    double      padding_h;
+    t_3d_coords     *p1;
+    t_3d_coords     *p2;
+    t_3d_coords     *p3;
+    t_3d_coords     *p4;
 
-    padding_h = WIN_H / 2;
-    padding_w = WIN_W / 2;
-    draw_line(
-        coords_arr[y][x][0] + padding_w,
-        coords_arr[y][x][1] + padding_h,
-        coords_arr[y][x + 1][0] + padding_w,
-        coords_arr[y][x + 1][1] + padding_h,
-        mlx_ptr
-    );
-    draw_line(
-        coords_arr[y][x][0] + padding_w,
-        coords_arr[y][x][1] + padding_h,
-        coords_arr[y + 1][x][0] + padding_w,
-        coords_arr[y + 1][x][1] + padding_h,
-        mlx_ptr
-    );
-    draw_line(
-        coords_arr[y][x + 1][0] + padding_w,
-        coords_arr[y][x + 1][1] + padding_h,
-        coords_arr[y + 1][x + 1][0] + padding_w,
-        coords_arr[y + 1][x + 1][1] + padding_h,
-        mlx_ptr
-    );
-    draw_line(
-        coords_arr[y + 1][x + 1][0] + padding_w,
-        coords_arr[y + 1][x + 1][1] + padding_h,
-        coords_arr[y + 1][x][0] + padding_w,
-        coords_arr[y + 1][x][1] + padding_h,
-        mlx_ptr
-    );
+    p1 = create_3d_coords(coords_arr[y][x]);
+    p2 = create_3d_coords(coords_arr[y][x + 1]);
+    p3 = create_3d_coords(coords_arr[y + 1][x]);
+    p4 = create_3d_coords(coords_arr[y + 1][x + 1]);
+
+
+    draw_line(p1, p2, mlx_ptr);
+    draw_line(p2, p3, mlx_ptr);
+    draw_line(p3, p4, mlx_ptr);
+    draw_line(p4, p1, mlx_ptr);
 }
 
 void            draw_grid(t_mlx_struct *mlx_ptr, double ***coords_arr, int *size)
