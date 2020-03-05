@@ -6,7 +6,7 @@
 /*   By: jsuonper <jsuonper@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 13:43:36 by jsuonper          #+#    #+#             */
-/*   Updated: 2020/02/27 19:00:13 by jsuonper         ###   ########.fr       */
+/*   Updated: 2020/03/05 12:36:31 by jsuonper         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ int                 *count_size(int fd)
 
     while ((ret = get_next_line(fd, &line)) == 1)
     {
-        printf("%s\n", line);
         if (first)
         {
             while (line[i])
@@ -109,14 +108,12 @@ double              ***make_3d_array(int fd, int *size)
             coords_array[i][j][0] = (double)(0 - ((size[0] - 1) * GRID_SZ / 2) + (j * GRID_SZ));
             coords_array[i][j][1] = (double)(0 - ((size[1] - 1) * GRID_SZ / 2) + (i * GRID_SZ));
             coords_array[i][j][2] = (double)number * GRID_SZ;
-            //coords_array[i][j][3] = '\0';
             j++;
         }
         coords_array[i][j] = NULL;
         i++;
     }
     coords_array[i] = NULL;
-    printf("end of make 3d arr\n");
     return (coords_array);
 }
 
