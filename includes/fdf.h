@@ -6,14 +6,14 @@
 /*   By: jsuonper <jsuonper@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/02 13:48:52 by jsuonper          #+#    #+#             */
-/*   Updated: 2020/02/27 18:57:39 by jsuonper         ###   ########.fr       */
+/*   Updated: 2020/03/07 18:09:43 by jsuonper         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 
 # define FDF_H
-# define GRID_SZ 8
+# define GRID_SZ 20
 # define WIN_H 1500
 # define WIN_W 2500
 # define Z_CHANGE 10
@@ -21,6 +21,15 @@
 # include "../miniLibX/mlx.h"
 # include "../libft/libft.h"
 # include "../libft/get_next_line.h"
+
+typedef struct		s_helpers
+{
+	int				dx;
+	int				sx;
+	int				dy;
+	int				sy;
+	int				err;
+}					t_helpers;
 
 typedef struct		s_rgb
 {

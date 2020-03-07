@@ -6,7 +6,7 @@
 /*   By: jsuonper <jsuonper@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/02 17:44:59 by jsuonper          #+#    #+#             */
-/*   Updated: 2020/02/27 19:00:45 by jsuonper         ###   ########.fr       */
+/*   Updated: 2020/03/07 18:30:13 by jsuonper         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,60 +14,72 @@
 #include <stdlib.h>
 #include <math.h>
 
-t_rgb		*create_rgb_struct(int r, int g, int b)
+t_helpers *make_helpers_struct(dx, sx, dy, sy, err)
 {
-	t_rgb	*rgb;
+	t_helpers *helpers;
 
-	if (!(rgb = (t_rgb*)malloc(sizeof(t_rgb))))
+	if (!(helpers = (t_helpers *)malloc(sizeof(t_helpers))))
 		return (0);
-	rgb->r = r;
-	rgb->g = g;
-	rgb->b = b;
-	return (rgb);
+	helpers->dx = dx;
+	helpers->sx = sx;
+	helpers->dy = dy;
+	helpers->sy = sy;
+	helpers->err = err;
+	return (helpers);
 }
 
-t_rgb		*hex_to_rgb(int hex)
+t_helpers *get_helpers(t_3d_coords *p0, t_3d_coords *p1)
 {
-	t_rgb	*rgb;
-	int		r;
-	int		g;
-	int		b;
+	t_helpers *helpers;
+	int dx;
+	int sx;
+	int dy;
+	int sy;
+	int err;
 
-	r = ((hex >> 16) & 0xFF);
-	g = ((hex >> 8) & 0xFF);
-	b = (hex & 0xFF);
-	rgb = create_rgb_struct(r, g, b);
-	return (rgb);
+	dx = abs(p1->x - p0->x);
+	sx = p0->x < p1->x ? 1 : -1;
+	dy = abs(p1->y - p0->y);
+	sy = p0->y < p1->y ? 1 : -1;
+	err = (dx > dy ? dx : -dy) / 2;
+	helpers = make_helpers_struct(dx, sx, dy, sy, err);
+	return (helpers);
 }
 
-void        	draw_line(t_3d_coords *p0, t_3d_coords *p1, t_mlx_struct *param)
+void draw_line(t_3d_coords *p0, t_3d_coords *p1, t_mlx_struct *param)
 {
-	double		padding_w;
-    double		padding_h;
-	int dx = abs(p1->x - p0->x);
-	int sx = p0->x < p1->x ? 1 : -1;
-	int dy = abs(p1->y - p0->y);
-	int sy = p0->y < p1->y ? 1 : -1;
-	int err = (dx > dy ? dx : -dy) / 2;
-    padding_h = WIN_H / 2;
-    padding_w = WIN_W / 2;
+	double padding_w;
+	double padding_h;
 	int e2;
+	t_helpers *helpers;
+	int x0;
+	int x1;
+	int y0;
+	int y1;
 
-	while(1)
+	x0 = p0->x;
+	x1 = p1->x;
+	y0 = p0->y;
+	y1 = p1->y;
+	padding_h = WIN_H / 2;
+	padding_w = WIN_W / 2;
+	helpers = get_helpers(p0, p1);
+
+	while (1)
 	{
-		mlx_pixel_put(param->mlx_ptr, param->win_ptr, p0->x + padding_w, p0->y + padding_h, 0xFFFFF);
-		if (p0->x == p1->x && p0->y == p1->y)
+		mlx_pixel_put(param->mlx_ptr, param->win_ptr, x0 + padding_w, y0 + padding_h, 0xFFFFF);
+		if (x0 == x1 && y0 == y1)
 			break;
-		e2 = err;
-		if (e2 >-dx)
+		e2 = helpers->err;
+		if (e2 > -helpers->dx)
 		{
-			err -= dy;
-			p0->x += sx;
+			helpers->err -= helpers->dy;
+			x0 += helpers->sx;
 		}
-		if (e2 < dy)
+		if (e2 < helpers->dy)
 		{
-			err += dx;
-			p0->y += sy;
+			helpers->err += helpers->dx;
+			y0 += helpers->sy;
 		}
 	}
 }
