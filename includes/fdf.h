@@ -6,14 +6,13 @@
 /*   By: jsuonper <jsuonper@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/02 13:48:52 by jsuonper          #+#    #+#             */
-/*   Updated: 2020/03/10 12:54:34 by jsuonper         ###   ########.fr       */
+/*   Updated: 2020/03/10 14:10:52 by jsuonper         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 
 # define FDF_H
-# define GRID_SZ 40
 # define WIN_H 1500
 # define WIN_W 2500
 # define Z_CHANGE 10
@@ -57,19 +56,29 @@ typedef struct		s_mlx_struct
 {
 	void			*mlx_ptr;
 	void			*win_ptr;
-	double			***coords;
+	double			***coords_arr;
 	int				*size;
+	int				grid_size;
+	int				fd;
 }					t_mlx_struct;
 
+typedef struct		s_line_data
+{
+	int				e2;
+	t_coords		*coords;
+	t_helpers		*helpers;
+}					t_line_data;
+
 int		            *count_size(int fd);
-int					rot_g_onkey(int keycode, t_mlx_struct *coords_ptr);
-double				***make_3d_array(int fd, int *size);
+int					key_handlers(int keycode, t_mlx_struct *data_ptr);
+double				***make_grid(t_mlx_struct *data_ptr);
 t_3d_coords			*create_3d_coords(double *coords);
 t_coords			*create_coords(int x0, int y0, int x1, int y1);
-t_mlx_struct		*create_mlx_struct(void *mlx_ptr, void *win_ptr, double ***coords, int *size);
+t_mlx_struct		*create_mlx_struct(void);
 t_rgb				*hex_to_rgb(int hex);
 t_rgb				*create_rgb_struct(int r, int g, int b);
-void            	draw_grid(t_mlx_struct *mlx_ptr, double ***coords_arr, int *size);
+void				handle_error(char *msg);
+void            	draw_grid(t_mlx_struct *data_ptr);
 void        		draw_line(t_3d_coords *p1, t_3d_coords *p2, t_mlx_struct *param);
 void            	make_square(t_mlx_struct *param);
 void        		rot_grid(double ***coords_arr, int *size, double angle, char axel);

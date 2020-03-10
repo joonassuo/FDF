@@ -6,7 +6,7 @@
 /*   By: jsuonper <jsuonper@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 13:43:36 by jsuonper          #+#    #+#             */
-/*   Updated: 2020/03/07 17:43:24 by jsuonper         ###   ########.fr       */
+/*   Updated: 2020/03/10 13:35:03 by jsuonper         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,20 +24,13 @@ int                 *count_size(int fd)
     int             first;
 
     if (!(res = (int*)malloc(sizeof(int) * 2)))
-    {
-        ft_putendl("ERROR: malloc, count_size, int array");
-        exit (0);
-    }
+        handle_error("ERROR: malloc, count_size, int array");
     if (!(line = (char*)malloc(sizeof(char) * 1000)))
-    {
-        ft_putendl("ERROR: malloc, count_size, line char array");
-        exit (0);
-    }
+        handle_error("ERROR: malloc, count_size, line char array");
     rows = 0;
     columns = 0;
     i = 0;
     first = 1;
-
 
     while ((ret = get_next_line(fd, &line)) == 1)
     {
@@ -63,7 +56,7 @@ int                 *count_size(int fd)
     return (res);
 }
 
-double              ***make_3d_array(int fd, int *size)
+double              ***make_grid(t_mlx_struct *data_ptr)
 {
     char            *line;
     char            *value;
@@ -75,20 +68,14 @@ double              ***make_3d_array(int fd, int *size)
     int             k;
     int             ret;
 
-    if (!(coords_array = (double***)malloc(sizeof(double**) * size[0] + 1)))
-    {
-        ft_putendl("ERROR: malloc, make_3d_array, coords_array");
-        exit (0);
-    }
+    if (!(coords_array = (double***)malloc(sizeof(double**) * data_ptr->size[0] + 1)))
+        handle_error("ERROR: malloc, make_grid, coords_array");
     i = 0;
     j = 0;
-    while ((ret = get_next_line(fd, &line)) == 1)
+    while ((ret = get_next_line(data_ptr->fd, &line)) == 1)
     {
-        if (!(coords_array[i] = (double**)malloc(sizeof(double*) * size[1] + 1)))
-        {
-            ft_putendl("ERROR: malloc, make_3d_array, coords_array");
-            exit (0);
-        }
+        if (!(coords_array[i] = (double**)malloc(sizeof(double*) * data_ptr->size[1] + 1)))
+            handle_error("ERROR: malloc, make_grid, coords_array");
         j = 0;
         k = 0;
         while (line[k] != '\0')
@@ -101,13 +88,10 @@ double              ***make_3d_array(int fd, int *size)
             value = ft_strsub((char const*)line, (unsigned int)start, (size_t)k - start);
             number = (double)ft_atoi(value);
             if (!(coords_array[i][j] = (double*)malloc(sizeof(double) * 3)))
-            {
-                ft_putendl("ERROR: malloc, make_3d_array, coords_array[i][j]");
-                exit (0);
-            }
-            coords_array[i][j][0] = (double)(0 - ((size[0] - 1) * GRID_SZ / 2) + (j * GRID_SZ));
-            coords_array[i][j][1] = (double)(0 - ((size[1] - 1) * GRID_SZ / 2) + (i * GRID_SZ));
-            coords_array[i][j][2] = (double)number * GRID_SZ;
+                handle_error("ERROR: malloc, make_grid, coords_array[i][j]");
+            coords_array[i][j][0] = (double)(0 - ((data_ptr->size[0] - 1) * data_ptr->grid_size / 2) + (j * data_ptr->grid_size));
+            coords_array[i][j][1] = (double)(0 - ((data_ptr->size[1] - 1) * data_ptr->grid_size / 2) + (i * data_ptr->grid_size));
+            coords_array[i][j][2] = (double)number * data_ptr->grid_size;
             j++;
         }
         coords_array[i][j] = NULL;
@@ -115,41 +99,4 @@ double              ***make_3d_array(int fd, int *size)
     }
     coords_array[i] = NULL;
     return (coords_array);
-}
-
-void                draw_square(t_mlx_struct *mlx_ptr, double ***coords_arr, int x, int y)
-{
-    t_3d_coords     *p1;
-    t_3d_coords     *p2;
-    t_3d_coords     *p3;
-    t_3d_coords     *p4;
-
-    p1 = create_3d_coords(coords_arr[y][x]);
-    p2 = create_3d_coords(coords_arr[y][x + 1]);
-    p3 = create_3d_coords(coords_arr[y + 1][x]);
-    p4 = create_3d_coords(coords_arr[y + 1][x + 1]);
-
-
-    draw_line(p1, p2, mlx_ptr);
-    draw_line(p2, p4, mlx_ptr);
-    draw_line(p4, p3, mlx_ptr);
-    draw_line(p3, p1, mlx_ptr);
-}
-
-void            draw_grid(t_mlx_struct *mlx_ptr, double ***coords_arr, int *size)
-{
-    int         i;
-    int         j;
-
-    i = 0;
-    while (i < size[0] - 1)
-    {
-        j = 0;
-        while (j < size[1] - 1)
-        {
-            draw_square(mlx_ptr, coords_arr, j, i);
-            j++;
-        }
-        i++;
-    }
 }
