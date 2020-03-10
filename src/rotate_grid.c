@@ -6,7 +6,7 @@
 /*   By: jsuonper <jsuonper@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 12:32:38 by jsuonper          #+#    #+#             */
-/*   Updated: 2020/03/10 14:24:39 by jsuonper         ###   ########.fr       */
+/*   Updated: 2020/03/10 18:10:18 by jsuonper         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 void		rot_coords(double *coords, double angle, char axel)
 {
-	int		temp;
+	double	temp;
 	int		i;
 	int		j;
 
@@ -40,18 +40,24 @@ void		rot_coords(double *coords, double angle, char axel)
 	coords[j] = coords[j] * cos(angle) + temp * sin(angle);
 }
 
-void		rot_grid(double ***coords_arr, int *size, double angle, char axel)
+void		rot_grid(t_mlx_struct *data_ptr, double angle, char axel)
 {
 	int		i;
 	int		j;
 
 	i = 0;
-	while (i < size[0])
+	while (i < data_ptr->size[0])
 	{
 		j = 0;
-		while (j < size[1])
+		while (j < data_ptr->size[1])
 		{
-			rot_coords(coords_arr[i][j], angle, axel);
+			rot_coords(data_ptr->coords_arr[i][j], angle, axel);
+			if (axel == 'x')
+				data_ptr->total_x += angle;
+			else if (axel == 'y')
+				data_ptr->total_y += angle;
+			else
+				data_ptr->total_z += angle;
 			j++;
 		}
 		i++;

@@ -6,15 +6,15 @@
 /*   By: jsuonper <jsuonper@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/02 13:48:52 by jsuonper          #+#    #+#             */
-/*   Updated: 2020/03/10 14:10:52 by jsuonper         ###   ########.fr       */
+/*   Updated: 2020/03/10 17:50:43 by jsuonper         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 
 # define FDF_H
-# define WIN_H 1500
-# define WIN_W 2500
+# define WIN_H 1000
+# define WIN_W 1500
 # define Z_CHANGE 10
 # define LINE_BUFF 1000
 # include "../miniLibX/mlx.h"
@@ -57,6 +57,10 @@ typedef struct		s_mlx_struct
 	void			*mlx_ptr;
 	void			*win_ptr;
 	double			***coords_arr;
+	double			***og_arr;
+	double			total_x;
+	double			total_y;
+	double			total_z;
 	int				*size;
 	int				grid_size;
 	int				fd;
@@ -81,10 +85,7 @@ void				handle_error(char *msg);
 void            	draw_grid(t_mlx_struct *data_ptr);
 void        		draw_line(t_3d_coords *p1, t_3d_coords *p2, t_mlx_struct *param);
 void            	make_square(t_mlx_struct *param);
-void        		rot_grid(double ***coords_arr, int *size, double angle, char axel);
-void		        rotate_x(t_3d_coords *coords, double angle);
-void		        rotate_y(t_3d_coords *coords, double angle);
-void		        rotate_z(t_3d_coords *coords, double angle);
+void        		rot_grid(t_mlx_struct *data_ptr, double angle, char axel);
 void		        draw_axis(t_mlx_struct *mlx_ptr);
 
 
