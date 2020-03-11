@@ -6,7 +6,7 @@
 /*   By: jsuonper <jsuonper@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 12:32:38 by jsuonper          #+#    #+#             */
-/*   Updated: 2020/03/10 18:10:18 by jsuonper         ###   ########.fr       */
+/*   Updated: 2020/03/11 17:30:04 by jsuonper         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,10 @@ void		rot_grid(t_mlx_struct *data_ptr, double angle, char axel)
 	int		j;
 
 	i = 0;
-	while (i < data_ptr->size[0])
+	while (i < data_ptr->rows)
 	{
 		j = 0;
-		while (j < data_ptr->size[1])
+		while (j < data_ptr->columns)
 		{
 			rot_coords(data_ptr->coords_arr[i][j], angle, axel);
 			if (axel == 'x')

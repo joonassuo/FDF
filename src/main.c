@@ -6,13 +6,14 @@
 /*   By: jsuonper <jsuonper@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/02 13:19:25 by jsuonper          #+#    #+#             */
-/*   Updated: 2020/03/10 17:42:59 by jsuonper         ###   ########.fr       */
+/*   Updated: 2020/03/11 17:35:56 by jsuonper         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 #include <fcntl.h>
 #include <math.h>
+#include <stdio.h>
 
 void				close_open(int fd, char *file)
 {
@@ -35,7 +36,7 @@ int					main(int ac, char **av)
 		handle_error("ERROR: win_ptr");
 	if ((data_ptr->fd = open(av[1], O_RDONLY)) == -1)
 		handle_error("ERROR: open");
-	data_ptr->size = count_size(data_ptr->fd);
+	count_size(data_ptr);
 	close_open(data_ptr->fd, av[1]);
 	data_ptr->grid_size = 20;
 	data_ptr->coords_arr = make_grid(data_ptr);

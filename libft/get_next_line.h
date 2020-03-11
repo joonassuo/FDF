@@ -6,7 +6,7 @@
 /*   By: jsuonper <jsuonper@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/24 15:28:32 by jsuonper          #+#    #+#             */
-/*   Updated: 2020/02/24 15:52:09 by jsuonper         ###   ########.fr       */
+/*   Updated: 2020/03/11 17:12:55 by jsuonper         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 
 # include <unistd.h>
 # include <stdlib.h>
+# include "./libft.h"
 
 /*
 ** Macro for the buffer size, the max number of file descriptors available, and

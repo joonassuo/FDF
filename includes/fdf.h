@@ -6,7 +6,7 @@
 /*   By: jsuonper <jsuonper@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/02 13:48:52 by jsuonper          #+#    #+#             */
-/*   Updated: 2020/03/11 13:54:34 by jsuonper         ###   ########.fr       */
+/*   Updated: 2020/03/11 17:26:50 by jsuonper         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,8 @@ typedef struct		s_mlx_struct
 	double			total_x;
 	double			total_y;
 	double			total_z;
-	int				*size;
+	int				rows;
+	int				columns;
 	int				grid_size;
 	int				fd;
 }					t_mlx_struct;
@@ -93,7 +94,7 @@ typedef struct		s_line_data
 	t_helpers		*helpers;
 }					t_line_data;
 
-int		            *count_size(int fd);
+void	            count_size(t_mlx_struct *data_ptr);
 int					key_handlers(int keycode, t_mlx_struct *data_ptr);
 double				***make_grid(t_mlx_struct *data_ptr);
 t_3d_coords			*create_3d_coords(double *coords);

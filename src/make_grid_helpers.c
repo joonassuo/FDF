@@ -6,7 +6,7 @@
 /*   By: jsuonper <jsuonper@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 13:36:27 by jsuonper          #+#    #+#             */
-/*   Updated: 2020/03/11 13:38:58 by jsuonper         ###   ########.fr       */
+/*   Updated: 2020/03/11 17:35:38 by jsuonper         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,17 @@ double ***arr, double nr)
 	int				i;
 	int				j;
 	int				k;
-	int				*size;
-	int				grid_size;
+	int				scale;
 
 	i = loop->i;
 	j = loop->j;
 	k = loop->k;
-	size = d_ptr->size;
-	grid_size = d_ptr->grid_size;
+	scale = d_ptr->grid_size;
 	if (!(arr[i][j] = (double*)malloc(sizeof(double) * 3)))
 		handle_error("ERROR: malloc, make_grid");
-	arr[i][j][0] = (0 - ((size[0] - 1) * grid_size / 2) + (j * grid_size));
-	arr[i][j][1] = (0 - ((size[1] - 1) * grid_size / 2) + (i * grid_size));
-	arr[i][j][2] = nr * grid_size;
+	arr[i][j][0] = (0 - ((d_ptr->columns - 1) * scale / 2) + (j * scale));
+	arr[i][j][1] = (0 - ((d_ptr->rows - 1) * scale / 2) + (i * scale));
+	arr[i][j][2] = nr * scale;
 }
 
 void				grid_helper_3(t_loopers *loop, char *line)
@@ -55,7 +53,7 @@ double ***coords_array)
 	while ((loop->ret = get_next_line(data_ptr->fd, &line)) == 1)
 	{
 		if (!(coords_array[loop->i] = (double**)malloc(sizeof(double*) *
-		data_ptr->size[1] + 1)))
+		data_ptr->columns + 1)))
 			handle_error("ERROR: malloc, make_grid, coords_array");
 		loop->j = 0;
 		loop->k = 0;

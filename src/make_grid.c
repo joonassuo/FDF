@@ -6,49 +6,40 @@
 /*   By: jsuonper <jsuonper@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 13:43:36 by jsuonper          #+#    #+#             */
-/*   Updated: 2020/03/11 13:53:39 by jsuonper         ###   ########.fr       */
+/*   Updated: 2020/03/11 17:34:42 by jsuonper         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 #include <stdio.h>
 
-void				size_helper(t_size_helpers *helper, char *line)
-{
-	while ((line[helper->i] >= '0' && line[helper->i] <= '9')
-	|| line[helper->i] == '-')
-		helper->i++;
-	helper->columns++;
-	while (line[helper->i] == ' ')
-		helper->i++;
-}
-
-int					*count_size(int fd)
+void				count_size(t_mlx_struct *data_ptr)
 {
 	char			*line;
-	int				*res;
+	char			**split_arr;
 	t_size_helpers	*helper;
 
-	if (!(res = (int*)malloc(sizeof(int) * 2)))
-		handle_error("ERROR: malloc, count_size, int array");
-	if (!(line = (char*)malloc(sizeof(char) * 1000)))
-		handle_error("ERROR: malloc, count_size, line char array");
 	helper = create_size_helpers();
-	while ((helper->ret = get_next_line(fd, &line)) == 1)
+	while ((helper->ret = get_next_line(data_ptr->fd, &line)) == 1)
 	{
 		if (helper->first)
 		{
-			while (line[helper->i])
-				size_helper(helper, line);
+			split_arr = ft_strsplit(line, ' ');
+			while (split_arr[helper->i])
+			{
+				free(split_arr[helper->i]);
+				helper->columns++;
+				helper->i++;
+			}
+			free(split_arr);
 			helper->first = 0;
 		}
 		helper->rows++;
-		ft_strclr(line);
+		free(line);
 	}
-	res[0] = helper->rows;
-	res[1] = helper->columns;
-	free(line);
-	return (res);
+	free(helper);
+	data_ptr->rows = helper->rows;
+	data_ptr->columns = helper->columns;
 }
 
 double				***make_grid(t_mlx_struct *data_ptr)
@@ -57,7 +48,7 @@ double				***make_grid(t_mlx_struct *data_ptr)
 	t_loopers		*loop;
 
 	if (!(coords_array = (double***)malloc(sizeof(double**) *
-	data_ptr->size[0] + 1)))
+	data_ptr->rows + 1)))
 		handle_error("ERROR: malloc, make_grid, coords_array");
 	loop = create_looopers();
 	grid_helper_1(loop, data_ptr, coords_array);

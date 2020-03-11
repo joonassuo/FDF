@@ -3,15 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vtouffet <vtouffet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jsuonper <jsuonper@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/18 19:06:22 by vtouffet          #+#    #+#             */
-/*   Updated: 2017/11/09 10:56:47 by vtouffet         ###   ########.fr       */
+/*   Updated: 2020/03/11 16:46:00 by jsuonper         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 char	*ft_strchr(const char *s, int c)
 {
+	if (!s || !c)
+		return (0);
 	while (*s)
 	{
 		if (*s == c)

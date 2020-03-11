@@ -6,7 +6,7 @@
 /*   By: jsuonper <jsuonper@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 13:29:51 by jsuonper          #+#    #+#             */
-/*   Updated: 2020/03/10 14:22:00 by jsuonper         ###   ########.fr       */
+/*   Updated: 2020/03/11 17:30:29 by jsuonper         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,10 @@ void				draw_grid(t_mlx_struct *data_ptr)
 	int				j;
 
 	i = 0;
-	while (i < data_ptr->size[0] - 1)
+	while (i < data_ptr->rows - 1)
 	{
 		j = 0;
-		while (j < data_ptr->size[1] - 1)
+		while (j < data_ptr->columns - 1)
 		{
 			draw_square(data_ptr, j, i);
 			j++;
