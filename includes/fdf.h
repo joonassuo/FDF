@@ -6,7 +6,7 @@
 /*   By: jsuonper <jsuonper@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/02 13:48:52 by jsuonper          #+#    #+#             */
-/*   Updated: 2020/03/10 17:50:43 by jsuonper         ###   ########.fr       */
+/*   Updated: 2020/03/11 12:54:35 by jsuonper         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,17 @@
 # include "../miniLibX/mlx.h"
 # include "../libft/libft.h"
 # include "../libft/get_next_line.h"
+
+typedef struct		s_loopers
+{
+	int				i;
+	int				j;
+	int				k;
+	char			*value;
+	double			number;
+	int				start;
+	int				ret;
+}					t_loopers;
 
 typedef struct		s_helpers
 {
