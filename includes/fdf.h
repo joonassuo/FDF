@@ -6,7 +6,7 @@
 /*   By: jsuonper <jsuonper@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/02 13:48:52 by jsuonper          #+#    #+#             */
-/*   Updated: 2020/03/11 13:44:13 by jsuonper         ###   ########.fr       */
+/*   Updated: 2020/03/11 13:54:34 by jsuonper         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,11 @@ int					key_handlers(int keycode, t_mlx_struct *data_ptr);
 double				***make_grid(t_mlx_struct *data_ptr);
 t_3d_coords			*create_3d_coords(double *coords);
 t_coords			*create_coords(int x0, int y0, int x1, int y1);
+t_helpers			*create_helpers_struct(void);
+t_line_data			*create_line_struct(void);
+t_loopers			*create_looopers(void);
 t_mlx_struct		*create_mlx_struct(void);
+t_size_helpers		*create_size_helpers(void);
 t_rgb				*hex_to_rgb(int hex);
 t_rgb				*create_rgb_struct(int r, int g, int b);
 void				handle_error(char *msg);

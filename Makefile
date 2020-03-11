@@ -6,7 +6,7 @@
 #    By: jsuonper <jsuonper@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/02 14:48:04 by jsuonper          #+#    #+#              #
-#    Updated: 2020/03/11 13:38:01 by jsuonper         ###   ########.fr        #
+#    Updated: 2020/03/11 13:56:16 by jsuonper         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,6 @@ NAME = fdf
 #SOURCES
 SRCS_DIR = src/
 SRCS_LIST = main.c\
-			create_mlx_struct.c\
 			create_coords.c\
 			bresenham.c\
 			make_grid.c\
@@ -23,7 +22,8 @@ SRCS_LIST = main.c\
 			key_handlers.c\
 			error_handling.c\
 			draw_grid.c\
-			make_grid_helpers.c
+			make_grid_helpers.c\
+			create_structs.c
 SRCS = $(addprefix $(SRCS_DIR), $(SRCS_LIST))
 
 #INCLUDES

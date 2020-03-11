@@ -6,25 +6,12 @@
 /*   By: jsuonper <jsuonper@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 13:43:36 by jsuonper          #+#    #+#             */
-/*   Updated: 2020/03/11 13:49:31 by jsuonper         ###   ########.fr       */
+/*   Updated: 2020/03/11 13:53:39 by jsuonper         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 #include <stdio.h>
-
-t_size_helpers		*create_size_helpers(void)
-{
-	t_size_helpers	*helper;
-
-	if (!(helper = (t_size_helpers*)malloc(sizeof(t_size_helpers))))
-		handle_error("ERROR: malloc, size_helper");
-	helper->rows = 0;
-	helper->columns = 0;
-	helper->i = 0;
-	helper->first = 1;
-	return (helper);
-}
 
 void				size_helper(t_size_helpers *helper, char *line)
 {
@@ -62,18 +49,6 @@ int					*count_size(int fd)
 	res[1] = helper->columns;
 	free(line);
 	return (res);
-}
-
-t_loopers			*create_looopers(void)
-{
-	t_loopers		*loop;
-
-	if (!(loop = (t_loopers*)malloc(sizeof(t_loopers))))
-		handle_error("ERROR: malloc, t_loopers");
-	loop->i = 0;
-	loop->j = 0;
-	loop->k = 0;
-	return (loop);
 }
 
 double				***make_grid(t_mlx_struct *data_ptr)
