@@ -6,7 +6,7 @@
 #    By: jsuonper <jsuonper@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/02 14:48:04 by jsuonper          #+#    #+#              #
-#    Updated: 2020/03/10 17:30:31 by jsuonper         ###   ########.fr        #
+#    Updated: 2020/03/11 13:38:01 by jsuonper         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,8 @@ SRCS_LIST = main.c\
 			rotate_grid.c\
 			key_handlers.c\
 			error_handling.c\
-			draw_grid.c
+			draw_grid.c\
+			make_grid_helpers.c
 SRCS = $(addprefix $(SRCS_DIR), $(SRCS_LIST))
 
 #INCLUDES

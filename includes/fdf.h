@@ -6,7 +6,7 @@
 /*   By: jsuonper <jsuonper@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/02 13:48:52 by jsuonper          #+#    #+#             */
-/*   Updated: 2020/03/11 12:54:35 by jsuonper         ###   ########.fr       */
+/*   Updated: 2020/03/11 13:44:13 by jsuonper         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,15 @@ typedef struct		s_mlx_struct
 	int				fd;
 }					t_mlx_struct;
 
+typedef struct		s_size_helpers
+{
+	int				rows;
+	int				columns;
+	int				ret;
+	int				i;
+	int				first;
+}					t_size_helpers;
+
 typedef struct		s_line_data
 {
 	int				e2;
@@ -95,6 +104,9 @@ t_rgb				*create_rgb_struct(int r, int g, int b);
 void				handle_error(char *msg);
 void            	draw_grid(t_mlx_struct *data_ptr);
 void        		draw_line(t_3d_coords *p1, t_3d_coords *p2, t_mlx_struct *param);
+void				grid_helper_1(t_loopers *loop, t_mlx_struct *data_ptr, double ***coords_array);
+void				grid_helper_2(t_loopers *loop, t_mlx_struct *d_ptr, double ***arr, double nr);
+void				grid_helper_3(t_loopers *loop, char *line);
 void            	make_square(t_mlx_struct *param);
 void        		rot_grid(t_mlx_struct *data_ptr, double angle, char axel);
 void		        draw_axis(t_mlx_struct *mlx_ptr);
