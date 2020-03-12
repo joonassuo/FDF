@@ -1,20 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_toupper.c                                       :+:      :+:    :+:   */
+/*   ft_strspn.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thalme <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/17 12:45:44 by thalme            #+#    #+#             */
-/*   Updated: 2019/10/31 09:08:05 by thalme           ###   ########.fr       */
+/*   Created: 2019/12/06 16:02:43 by thalme            #+#    #+#             */
+/*   Updated: 2019/12/09 09:48:43 by thalme           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_toupper(int c)
+size_t		ft_strspn(const char *s, const char *charset)
 {
-	if (c >= 97 && c <= 122)
-		c = c - 32;
-	return (c);
+	size_t i;
+	size_t j;
+	size_t count;
+
+	i = -1;
+	while (s[++i])
+	{
+		j = -1;
+		count = 0;
+		while (charset[++j])
+			count += s[i] == charset[j] ? 1 : 0;
+		if (count == 0)
+			return (i);
+	}
+	return (i);
 }
+

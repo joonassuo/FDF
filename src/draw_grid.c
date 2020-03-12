@@ -6,7 +6,7 @@
 /*   By: jsuonper <jsuonper@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 13:29:51 by jsuonper          #+#    #+#             */
-/*   Updated: 2020/03/11 17:30:29 by jsuonper         ###   ########.fr       */
+/*   Updated: 2020/03/12 10:42:19 by jsuonper         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,10 @@ void				draw_square(t_mlx_struct *data_ptr, int x, int y)
 	draw_line(p2, p4, data_ptr->mlx_ptr);
 	draw_line(p4, p3, data_ptr->mlx_ptr);
 	draw_line(p3, p1, data_ptr->mlx_ptr);
+	free(p1);
+	free(p2);
+	free(p3);
+	free(p4);
 }
 
 void				draw_grid(t_mlx_struct *data_ptr)

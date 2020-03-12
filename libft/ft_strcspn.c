@@ -1,23 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstaddend.c                                     :+:      :+:    :+:   */
+/*   ft_strcspn.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vtouffet <vtouffet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: thalme <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/08/21 17:04:38 by vtouffet          #+#    #+#             */
-/*   Updated: 2017/11/09 10:48:24 by vtouffet         ###   ########.fr       */
+/*   Created: 2019/12/09 09:51:13 by thalme            #+#    #+#             */
+/*   Updated: 2019/12/09 10:04:42 by thalme           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstaddend(t_list **alst, t_list *new)
+size_t		ft_strcspn(const char *s, const char *charset)
 {
-	t_list	*ptr;
+	size_t i;
+	size_t j;
 
-	ptr = *alst;
-	while (ptr->next)
-		ptr = ptr->next;
-	ptr->next = new;
+	i = -1;
+	while (s[++i])
+	{
+		j = -1;
+		while (charset[++j])
+			if (s[i] == charset[j])
+				return (i);
+	}
+	return (i);
 }

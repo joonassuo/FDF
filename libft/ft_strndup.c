@@ -1,13 +1,12 @@
-  
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ft_strndup.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dhojt <dhojt@student.42.fr>                +#+  +:+       +#+        */
+/*   By: thalme <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/27 15:38:01 by dhojt             #+#    #+#             */
-/*   Updated: 2018/04/15 19:00:30 by dhojt            ###   ########.fr       */
+/*   Created: 2019/11/01 10:14:37 by thalme            #+#    #+#             */
+/*   Updated: 2019/11/01 10:22:17 by thalme           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +14,17 @@
 
 char	*ft_strndup(const char *s1, size_t n)
 {
-	char	*s2;
 	size_t	i;
+	char	*ret;
 
-	i = 0;
-	if (!(s2 = ft_strnew(n)))
+	if (!(ret = (char*)malloc(sizeof(char) * n + 1)))
 		return (NULL);
-	while (s1[i] && i < n)
+	i = 0;
+	while (s1[i] != '\0' && i < n)
 	{
-		s2[i] = s1[i];
+		ret[i] = s1[i];
 		i++;
 	}
-	return (s2);
+	ret[i] = '\0';
+	return (ret);
 }

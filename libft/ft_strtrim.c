@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vtouffet <vtouffet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: thalme <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/08/19 15:49:42 by vtouffet          #+#    #+#             */
-/*   Updated: 2017/11/09 10:54:55 by vtouffet         ###   ########.fr       */
+/*   Created: 2019/10/23 09:31:00 by thalme            #+#    #+#             */
+/*   Updated: 2019/10/31 09:33:50 by thalme           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,29 @@
 
 char	*ft_strtrim(char const *s)
 {
-	char			*result;
-	unsigned int	start;
-	unsigned int	size;
-	unsigned int	spaces_count;
+	char		*ret;
+	size_t		i;
+	size_t		start;
+	size_t		end;
 
-	if (!s)
+	i = ft_strlen(s);
+	i--;
+	start = 0;
+	end = i;
+	while (s[start] == ' ' || s[start] == '\n' || s[start] == '\t')
+		start++;
+	while ((s[end] == ' ' || s[end] == '\n' || s[end] == '\t') && end > start)
+		end--;
+	if (!(ret = (char*)malloc(sizeof(char) * (end - start + 2))))
 		return (NULL);
-	size = (unsigned int)ft_strlen((char*)s);
-	spaces_count = ft_strcntfirstchar((char*)s, " \n\t");
-	start = spaces_count;
-	if (size > spaces_count)
-		spaces_count += ft_strcntlastchar((char*)s, " \n\t");
-	size -= spaces_count;
-	if (!(result = ft_memalloc((size_t)size + 1)))
-		return (NULL);
-	result = ft_strncpy(result, (char*)s + start, size);
-	return (result);
+	i = 0;
+	if (s[0] == '\0')
+	{
+		ret[0] = '\0';
+		return (ret);
+	}
+	while (start <= end)
+		ret[i++] = s[start++];
+	ret[i] = '\0';
+	return (ret);
 }

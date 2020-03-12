@@ -1,16 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isupper.c                                       :+:      :+:    :+:   */
+/*   ft_numlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vtouffet <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: thalme <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/06 13:42:11 by vtouffet          #+#    #+#             */
-/*   Updated: 2017/11/09 10:45:03 by vtouffet         ###   ########.fr       */
+/*   Created: 2019/11/19 19:57:38 by thalme            #+#    #+#             */
+/*   Updated: 2019/11/19 20:31:20 by thalme           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isupper(int c)
+#include "libft.h"
+
+size_t		ft_numlen(int nb)
 {
-	return (c >= 65 && c <= 90);
+	size_t	ret;
+
+	ret = 0;
+	if (nb == 0)
+		return (1);
+	if (nb < 0)
+	{
+		nb *= -1;
+		ret++;
+	}
+	while (nb > 0)
+	{
+		nb = nb / 10;
+		ret++;
+	}
+	return (ret);
 }

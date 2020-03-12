@@ -3,40 +3,63 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa_base.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: exam <marvin@42.fr>                        +#+  +:+       +#+        */
+/*   By: thalme <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/07/21 19:35:17 by exam              #+#    #+#             */
-/*   Updated: 2017/11/10 13:14:07 by vtouffet         ###   ########.fr       */
+/*   Created: 2019/10/17 12:19:38 by thalme            #+#    #+#             */
+/*   Updated: 2019/12/12 16:53:19 by thalme           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 
-char	*ft_itoa_base(int value, char *base)
+static int		ft_len(long long nb, int base)
 {
-	int					count;
-	unsigned int		tmp;
-	char				*res;
-	unsigned int		base_length;
+	int count;
 
-	base_length = ft_strlen(base);
-	count = (value < 0) ? 2 : 1;
-	tmp = (value < 0) ? -value : value;
-	while (tmp >= base_length && (tmp /= base_length))
-		++count;
-	tmp = (value < 0) ? -value : value;
-	if (!(res = (char*)malloc(sizeof(char) * (count + 1))))
-		return (NULL);
-	if (value < 0)
-		res[0] = '-';
-	res[count] = '\0';
-	while (tmp >= base_length)
+	count = 0;
+	if (nb == 0)
+		return (1);
+	if (nb < 0)
 	{
-		--count;
-		res[count] = base[tmp % base_length];
-		tmp /= base_length;
+		count++;
+		nb = nb * -1;
 	}
-	res[--count] = base[tmp % base_length];
-	return (res);
+	while (nb > 0)
+	{
+		nb = nb / base;
+		count++;
+	}
+	return (count);
 }
+
+char			*ft_itoa_base(long long nb, int base)
+{
+	long	i;
+	int		count;
+	char	*ret;
+	int		c;
+
+	i = nb;
+	count = ft_len(i, base);
+	if (!(ret = (char*)malloc(sizeof(char) * count + 1)))
+		return (NULL);
+	c = count;
+	count = 0;
+	if (i < 0)
+	{
+		ret[count++] = '-';
+		i = i * -1;
+	}
+	ret[c--] = '\0';
+	while (c >= count)
+	{
+		if (i % base > 9)
+			ret[c] = i % base + 87;
+		else
+			ret[c] = i % base + 48;
+		i = i / base;
+		c--;
+	}
+	return (ret);
+}
+

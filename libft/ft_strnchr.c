@@ -1,32 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrev.c                                        :+:      :+:    :+:   */
+/*   ft_strnchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vtouffet <vtouffet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: thalme <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/08/18 19:11:06 by vtouffet          #+#    #+#             */
-/*   Updated: 2017/11/06 13:37:59 by vtouffet         ###   ########.fr       */
+/*   Created: 2019/10/18 17:13:23 by thalme            #+#    #+#             */
+/*   Updated: 2019/12/09 19:02:08 by thalme           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strrev(char *str)
-{
-	int		count;
-	int		i;
-	char	c;
+#include "libft.h"
 
-	count = 0;
-	while (str[count] != '\0')
-		count++;
-	count = count - 1;
+char	*ft_strnchr(const char *s, int c, size_t len)
+{
+	size_t	i;
+
 	i = 0;
-	while (i < ((count + 1) / 2))
+	while (s[i] && i < len)
 	{
-		c = str[i];
-		str[i] = str[count - i];
-		str[count - i] = c;
+		if (s[i] == c)
+			return ((char*)s + i);
 		i++;
 	}
-	return (str);
+	if (s[i] == c)
+		return ((char*)s + i);
+	return (NULL);
 }

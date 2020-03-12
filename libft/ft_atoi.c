@@ -3,31 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vtouffet <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: thalme <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/07/06 08:53:02 by vtouffet          #+#    #+#             */
-/*   Updated: 2017/11/09 10:44:08 by vtouffet         ###   ########.fr       */
+/*   Created: 2019/10/17 17:17:58 by thalme            #+#    #+#             */
+/*   Updated: 2019/10/24 15:28:01 by thalme           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_atoi(const char *str)
+int		ft_atoi(const char *str)
 {
-	int	res;
-	int	negative;
+	int count;
+	int neg;
+	int ret;
+	int i;
 
-	negative = 1;
-	res = 0;
-	while (*str && (*str == ' ' || *str == '\n' || *str == '\t' ||
-			*str == '\v' || *str == '\f' || *str == '\r'))
-		++str;
-	if (*str == '-')
-		negative = -1;
-	if (*str == '-' || *str == '+')
-		++str;
-	while (*str && *str >= '0' && *str <= '9')
+	i = 0;
+	neg = 1;
+	count = 0;
+	while ((str[count] >= 7 && str[count] <= 13) || str[count] == 32)
+		count++;
+	if (str[count] == '-')
 	{
-		res = res * 10 + (*str - 48);
-		++str;
+		neg = neg * -1;
+		count++;
 	}
-	return (res * negative);
+	if (str[count] == '+' && neg == 1)
+		count++;
+	while (str[count] >= 48 && str[count] <= 57)
+	{
+		ret = str[count] - 48;
+		i = (i * 10) + ret;
+		count++;
+	}
+	return (i * neg);
 }

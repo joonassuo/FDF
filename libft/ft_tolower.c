@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vtouffet <vtouffet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: thalme <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/08/18 19:03:42 by vtouffet          #+#    #+#             */
-/*   Updated: 2017/11/09 10:55:02 by vtouffet         ###   ########.fr       */
+/*   Created: 2019/10/17 13:00:37 by thalme            #+#    #+#             */
+/*   Updated: 2019/10/31 09:07:39 by thalme           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_tolower(int c)
 {
-	if (ft_isupper(c))
-		return (c + 32);
+	if (c >= 65 && c <= 90)
+		c = c + 32;
 	return (c);
 }

@@ -6,7 +6,7 @@
 /*   By: jsuonper <jsuonper@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 13:43:36 by jsuonper          #+#    #+#             */
-/*   Updated: 2020/03/11 17:34:42 by jsuonper         ###   ########.fr       */
+/*   Updated: 2020/03/12 10:43:21 by jsuonper         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,6 @@ double				***make_grid(t_mlx_struct *data_ptr)
 		handle_error("ERROR: malloc, make_grid, coords_array");
 	loop = create_looopers();
 	grid_helper_1(loop, data_ptr, coords_array);
+	free(loop);
 	return (coords_array);
 }

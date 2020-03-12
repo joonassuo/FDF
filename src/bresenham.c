@@ -6,7 +6,7 @@
 /*   By: jsuonper <jsuonper@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/02 17:44:59 by jsuonper          #+#    #+#             */
-/*   Updated: 2020/03/11 13:52:26 by jsuonper         ###   ########.fr       */
+/*   Updated: 2020/03/12 10:41:46 by jsuonper         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,7 @@ t_mlx_struct *param)
 			line_struct->coords->y0 += line_struct->helpers->sy;
 		}
 	}
+	free(line_struct->coords);
+	free(line_struct->helpers);
+	free(line_struct);
 }

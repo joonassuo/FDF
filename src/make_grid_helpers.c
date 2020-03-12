@@ -6,7 +6,7 @@
 /*   By: jsuonper <jsuonper@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 13:36:27 by jsuonper          #+#    #+#             */
-/*   Updated: 2020/03/11 17:35:38 by jsuonper         ###   ########.fr       */
+/*   Updated: 2020/03/12 11:16:44 by jsuonper         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void				grid_helper_3(t_loopers *loop, char *line)
 	loop->value = ft_strsub((char const*)line, (unsigned int)loop->start,
 	(size_t)loop->k - loop->start);
 	loop->number = ft_atoi(loop->value);
+	free(loop->value);
 }
 
 void				grid_helper_1(t_loopers *loop, t_mlx_struct *data_ptr,
@@ -48,12 +49,10 @@ double ***coords_array)
 {
 	char			*line;
 
-	if (!(line = (char*)malloc(sizeof(char) * 1000)))
-		handle_error("ERROR: malloc, count_size, line char array");
 	while ((loop->ret = get_next_line(data_ptr->fd, &line)) == 1)
 	{
 		if (!(coords_array[loop->i] = (double**)malloc(sizeof(double*) *
-		data_ptr->columns + 1)))
+		data_ptr->columns)))
 			handle_error("ERROR: malloc, make_grid, coords_array");
 		loop->j = 0;
 		loop->k = 0;
@@ -63,10 +62,7 @@ double ***coords_array)
 			grid_helper_2(loop, data_ptr, coords_array, loop->number);
 			loop->j++;
 		}
-		coords_array[loop->i][loop->j] = NULL;
 		loop->i++;
-		ft_strclr(line);
+		ft_strdel(&line);
 	}
-	free(line);
-	coords_array[loop->i] = NULL;
 }
