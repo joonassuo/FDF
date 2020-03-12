@@ -6,7 +6,7 @@
 /*   By: jsuonper <jsuonper@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 13:36:27 by jsuonper          #+#    #+#             */
-/*   Updated: 2020/03/12 12:29:54 by jsuonper         ###   ########.fr       */
+/*   Updated: 2020/03/12 15:51:32 by jsuonper         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,18 +44,38 @@ void				grid_helper_3(t_loopers *loop, char *line)
 	free(loop->value);
 }
 
+void				remove_end_lines(char *line)
+{
+	int				i;
+	int				last;
+
+	i = 0;
+	while (line[i])
+	{
+		while ((line[i] >= '0' && line[i] <= '9') || line[i] == '-')
+			i++;
+		last = i;
+		while (line[i] == ' ')
+			i++;
+		if (line[i] == '\0')
+			while (line[last])
+				line[last] = '\0';
+	}
+}
+
 void				grid_helper_1(t_loopers *loop, t_mlx_struct *data_ptr,
 double ***coords_array)
 {
 	char			*line;
 
-	while ((loop->ret = get_next_line(data_ptr->fd, &line)) == 1)
+	while (get_next_line(data_ptr->fd, &line) == 1)
 	{
 		if (!(coords_array[loop->i] = (double**)malloc(sizeof(double*) *
 		data_ptr->columns)))
 			handle_error("ERROR: malloc, make_grid, coords_array");
 		loop->j = 0;
 		loop->k = 0;
+		remove_end_lines(line);
 		while (line[loop->k] != '\0')
 		{
 			grid_helper_3(loop, line);

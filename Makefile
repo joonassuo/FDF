@@ -6,7 +6,7 @@
 #    By: jsuonper <jsuonper@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/02 14:48:04 by jsuonper          #+#    #+#              #
-#    Updated: 2020/03/11 13:56:16 by jsuonper         ###   ########.fr        #
+#    Updated: 2020/03/12 14:54:51 by jsuonper         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,8 @@ SRCS_LIST = main.c\
 			error_handling.c\
 			draw_grid.c\
 			make_grid_helpers.c\
-			create_structs.c
+			create_structs.c\
+			map_validation.c
 SRCS = $(addprefix $(SRCS_DIR), $(SRCS_LIST))
 
 #INCLUDES

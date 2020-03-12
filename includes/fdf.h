@@ -6,7 +6,7 @@
 /*   By: jsuonper <jsuonper@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/02 13:48:52 by jsuonper          #+#    #+#             */
-/*   Updated: 2020/03/12 14:36:11 by jsuonper         ###   ########.fr       */
+/*   Updated: 2020/03/12 15:28:57 by jsuonper         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,10 +69,6 @@ typedef struct		s_mlx_struct
 	void			*mlx_ptr;
 	void			*win_ptr;
 	double			***coords_arr;
-	double			***og_arr;
-	double			total_x;
-	double			total_y;
-	double			total_z;
 	int				rows;
 	int				columns;
 	int				grid_size;
@@ -115,6 +111,7 @@ void				grid_helper_2(t_loopers *loop, t_mlx_struct *d_ptr, double ***arr, doubl
 void				grid_helper_3(t_loopers *loop, char *line);
 void            	make_square(t_mlx_struct *param);
 void        		rot_grid(t_mlx_struct *data_ptr, double angle, char axel);
+void				validate_map(int fd);
 void		        draw_axis(t_mlx_struct *mlx_ptr);
 
 
