@@ -6,7 +6,7 @@
 /*   By: jsuonper <jsuonper@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 13:36:27 by jsuonper          #+#    #+#             */
-/*   Updated: 2020/03/12 11:16:44 by jsuonper         ###   ########.fr       */
+/*   Updated: 2020/03/12 12:29:54 by jsuonper         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ double ***arr, double nr)
 		handle_error("ERROR: malloc, make_grid");
 	arr[i][j][0] = (0 - ((d_ptr->columns - 1) * scale / 2) + (j * scale));
 	arr[i][j][1] = (0 - ((d_ptr->rows - 1) * scale / 2) + (i * scale));
-	arr[i][j][2] = nr * scale;
+	arr[i][j][2] = nr;
 }
 
 void				grid_helper_3(t_loopers *loop, char *line)

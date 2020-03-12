@@ -6,7 +6,7 @@
 /*   By: jsuonper <jsuonper@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/02 13:19:25 by jsuonper          #+#    #+#             */
-/*   Updated: 2020/03/12 11:17:15 by jsuonper         ###   ########.fr       */
+/*   Updated: 2020/03/12 12:24:16 by jsuonper         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int					main(int ac, char **av)
 	t_mlx_struct	*data_ptr;
 
 	if (!(data_ptr = create_mlx_struct()))
-		handle_error("ERROR: main.c, malloc, data_ptr");
+		handle_error("ERROR: malloc, data_ptr");
 	if (!(data_ptr->mlx_ptr = mlx_init()))
 		handle_error("ERROR: mlx_init");
 	if (!(data_ptr->win_ptr = mlx_new_window(data_ptr->mlx_ptr,
