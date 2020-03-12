@@ -6,7 +6,7 @@
 /*   By: jsuonper <jsuonper@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/02 13:48:52 by jsuonper          #+#    #+#             */
-/*   Updated: 2020/03/12 15:28:57 by jsuonper         ###   ########.fr       */
+/*   Updated: 2020/03/12 16:40:00 by jsuonper         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,17 +51,17 @@ typedef struct		s_rgb
 
 typedef struct		s_coords
 {
-	int				x0;
-	int				y0;
-	int				x1;
-	int				y1;
+	double			x0;
+	double			y0;
+	double			x1;
+	double			y1;
 }					t_coords;
 
 typedef struct		s_3d_coords
 {
-	int				x;
-	int				y;
-	int				z;
+	double			x;
+	double			y;
+	double			z;
 }					t_3d_coords;
 
 typedef struct		s_mlx_struct
@@ -71,7 +71,7 @@ typedef struct		s_mlx_struct
 	double			***coords_arr;
 	int				rows;
 	int				columns;
-	int				grid_size;
+	double			grid_size;
 	int				fd;
 }					t_mlx_struct;
 
@@ -93,6 +93,7 @@ typedef struct		s_line_data
 
 void	            count_size(t_mlx_struct *data_ptr);
 int					key_handlers(int keycode, t_mlx_struct *data_ptr);
+int					mouse_handlers(int button, int x, int y, t_mlx_struct *data_ptr);
 double				***make_grid(t_mlx_struct *data_ptr);
 t_3d_coords			*create_3d_coords(double *coords);
 t_coords			*create_coords(int x0, int y0, int x1, int y1);
@@ -105,7 +106,7 @@ t_rgb				*hex_to_rgb(int hex);
 t_rgb				*create_rgb_struct(int r, int g, int b);
 void				handle_error(char *msg);
 void            	draw_grid(t_mlx_struct *data_ptr);
-void        		draw_line(t_3d_coords *p1, t_3d_coords *p2, t_mlx_struct *param);
+void        		draw_line(t_3d_coords *p1, t_3d_coords *p2, t_mlx_struct *data_ptr);
 void				grid_helper_1(t_loopers *loop, t_mlx_struct *data_ptr, double ***coords_array);
 void				grid_helper_2(t_loopers *loop, t_mlx_struct *d_ptr, double ***arr, double nr);
 void				grid_helper_3(t_loopers *loop, char *line);

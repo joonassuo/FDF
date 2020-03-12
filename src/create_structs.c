@@ -6,7 +6,7 @@
 /*   By: jsuonper <jsuonper@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 13:50:35 by jsuonper          #+#    #+#             */
-/*   Updated: 2020/03/12 15:29:10 by jsuonper         ###   ########.fr       */
+/*   Updated: 2020/03/12 16:27:24 by jsuonper         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ t_helpers			*create_helpers_struct(t_coords *c)
 
 	if (!(h = (t_helpers *)malloc(sizeof(t_helpers))))
 		handle_error("ERROR: malloc, create_helpers_struct");
-	h->dx = abs(c->x1 - c->x0);
-	h->dy = abs(c->y1 - c->y0);
+	h->dx = abs((int)c->x1 - (int)c->x0);
+	h->dy = abs((int)c->y1 - (int)c->y0);
 	h->sx = c->x0 < c->x1 ? 1 : -1;
 	h->sy = c->y0 < c->y1 ? 1 : -1;
 	h->err = (h->dx > h->dy ? h->dx : -h->dy) / 2;

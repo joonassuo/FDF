@@ -6,7 +6,7 @@
 /*   By: jsuonper <jsuonper@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/02 13:19:25 by jsuonper          #+#    #+#             */
-/*   Updated: 2020/03/12 15:32:45 by jsuonper         ###   ########.fr       */
+/*   Updated: 2020/03/12 17:00:26 by jsuonper         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,14 @@ int					main(int ac, char **av)
 	close_open(data_ptr->fd, av[1]);
 	count_size(data_ptr);
 	close_open(data_ptr->fd, av[1]);
-	data_ptr->grid_size = 20;
+	data_ptr->grid_size = 5;
 	data_ptr->coords_arr = make_grid(data_ptr);
 	close_open(data_ptr->fd, av[1]);
 	if (close(data_ptr->fd) == -1)
 		handle_error("ERROR: close");
 	draw_grid(data_ptr);
-	mlx_key_hook(data_ptr->win_ptr, key_handlers, data_ptr);
+	mlx_hook(data_ptr->win_ptr, 2, 0, key_handlers, data_ptr);
+	mlx_hook(data_ptr->win_ptr, 4, 0, mouse_handlers, data_ptr);
 	mlx_loop(data_ptr->mlx_ptr);
 	return (ac);
 }
